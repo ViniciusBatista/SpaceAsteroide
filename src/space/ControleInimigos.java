@@ -6,6 +6,8 @@
 package space;
 
 import java.util.LinkedList;
+import java.util.ListIterator;
+import java.util.Random;
 import jplay.*;
 
 /**
@@ -14,35 +16,41 @@ import jplay.*;
  */
 public class ControleInimigos {
 
-    LinkedList<ObjInimigos> inimigos = new LinkedList<>();
-    public static ObjInimigos objIni;
+    static LinkedList<Inimigos> inimigos = new LinkedList<>();
+    public static Inimigos objIni;
     private int dificuldade = 500;
-
-//    ControleInimigos inimigosObj = new ControleInimigos();
     private int cont = 0;
 
-    public void adicionaInimigo(Scene cena) {//Scene cena (paramentro removido temp)
-        objIni = new ObjInimigos();
+    private Scene cena;
+
+    public void adicionaInimigo(Scene cena) {
+        objIni = new Inimigos();
         inimigos.addFirst(objIni);
         cena.addOverlay(objIni);
-
+        this.cena = cena;
     }
+    //Implementar esse metodo na classe nave
 
     public void inimigo(Scene cena) {
-        
-        if (cont < dificuldade) {
-            if(cont == 3 && dificuldade == 500){
-                dificuldade = 300;
-            }
-            if(cont == 5 && dificuldade == 300){
-                dificuldade = 100;
-            }
-            cont++;
-        } else {
+        Random random = new Random();
+        int num = random.nextInt(100);
+        if (num == 1) {
             adicionaInimigo(cena);
-            cont = 0;
+ 
         }
-        run();
+//        if (cont < dificuldade) {
+//            if (cont == 3 && dificuldade == 500) {
+//                dificuldade = 300;
+//            }
+//            if (cont == 5 && dificuldade == 300) {
+//                dificuldade = 200;
+//            }
+//            cont++;
+//        } else {
+//            adicionaInimigo(cena);
+//            cont = 0;
+//        }
+              run();
     }
 
     public void run() {

@@ -10,7 +10,6 @@ import jplay.GameImage;
 import jplay.Keyboard;
 import jplay.URL;
 import jplay.Window;
-import recursos.cenario.Cenario;
 
 /**
  *
@@ -48,7 +47,6 @@ public class Space {
                     } else {
                         cenario.run();
                     }
-                    
                 }
 
             }

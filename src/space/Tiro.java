@@ -5,7 +5,6 @@
  */
 package space;
 
-import javax.swing.JOptionPane;
 import jplay.Sprite;
 import jplay.URL;
 
@@ -15,7 +14,7 @@ import jplay.URL;
  */
 public class Tiro extends Sprite{
    
-    protected static final int VELOCIDADE_TIRO = 2;
+    protected static final int VELOCIDADE_TIRO = 3;
     protected boolean movendo = false;
     protected int direcao = 3;
 
@@ -38,6 +37,5 @@ public class Tiro extends Sprite{
         }
     }
     
-      
     }
     
