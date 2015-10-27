@@ -58,12 +58,8 @@ public class Cenario {
             
             explosion.update();
             explosion.draw();
-            
-            
-            
-            
 
-            ///ConIni.update(nave);
+//            ConIni.update(nave);
 //            objInimigo.draw();
             
             //janela.delay(1);

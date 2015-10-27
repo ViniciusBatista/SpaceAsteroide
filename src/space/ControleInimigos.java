@@ -6,7 +6,6 @@
 package space;
 
 import java.util.LinkedList;
-import java.util.ListIterator;
 import java.util.Random;
 import jplay.*;
 
@@ -18,8 +17,6 @@ public class ControleInimigos {
 
     static LinkedList<Inimigos> inimigos = new LinkedList<>();
     public static Inimigos objIni;
-    private int dificuldade = 500;
-    private int cont = 0;
 
     private Scene cena;
 
@@ -29,34 +26,26 @@ public class ControleInimigos {
         cena.addOverlay(objIni);
         this.cena = cena;
     }
-    //Implementar esse metodo na classe nave
 
-    public void inimigo(Scene cena) {
+    public void inimigo(Scene cena) {//Sorteia a frequencia em que os asteroides serão adicionados
         Random random = new Random();
         int num = random.nextInt(100);
         if (num == 1) {
             adicionaInimigo(cena);
- 
         }
-//        if (cont < dificuldade) {
-//            if (cont == 3 && dificuldade == 500) {
-//                dificuldade = 300;
-//            }
-//            if (cont == 5 && dificuldade == 300) {
-//                dificuldade = 200;
-//            }
-//            cont++;
-//        } else {
-//            adicionaInimigo(cena);
-//            cont = 0;
-//        }
-              run();
+        run();
     }
 
     public void run() {
         for (int i = 0; i < inimigos.size(); i++) {
             inimigos.get(i).movendo();
+            if (inimigos.get(i).x < -50) {//Verifica se o asteroide é menor do que o ponto x, se sim remove o objeto da sena e remove da lista
+                cena.removeOverlay(inimigos.get(i));//Remove da cena
+                inimigos.remove(inimigos.get(i));//Remove do LinkedList
+                break;
+            }
         }
+
     }
 
 }

@@ -5,6 +5,7 @@
  */
 package space;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import jplay.GameImage;
 import jplay.Keyboard;
@@ -54,7 +55,5 @@ public class Space {
                 janela.exit();
             }
         }
-
     }
-
 }

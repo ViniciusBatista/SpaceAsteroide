@@ -9,8 +9,6 @@ import java.util.LinkedList;
 import java.util.ListIterator;
 import jplay.*;
 
-
-
 /**
  *
  * @author batista

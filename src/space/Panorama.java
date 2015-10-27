@@ -5,15 +5,12 @@
  */
 package space;
 
-import jplay.GameImage;
-import jplay.URL;
 
 /**
  *
  * @author batista
  */
 public class Panorama {
-    GameImage img1 = new GameImage(URL.sprite("cenario.png"));
-    GameImage img2 = new GameImage(URL.sprite("cenario.png"));
+    
             
 }
