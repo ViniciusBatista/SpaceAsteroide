@@ -31,6 +31,17 @@ public class Inimigos extends Sprite {
         this.x = 1200;
         this.y = yPos;
         this.setTotalDuration(2000);
+        if(MenuDificuldades.dificuldade == 1){
+            this.velocidade = 0.6;
+        }else{
+            if(MenuDificuldades.dificuldade == 2){
+                this.velocidade = 1;
+            }else{
+                if(MenuDificuldades.dificuldade == 3){
+                    this.velocidade = 1.3;
+                }
+            }
+        }
     }
 
     public void morrer() {
