@@ -73,6 +73,10 @@ public class MenuDificuldades {
                 }
             }
             
+            if(teclado.keyDown(KeyEvent.VK_ESCAPE)){
+                loop = false;
+            }
+            
 //            if(evt.getKeyCode() == KeyEvent.VK_ESCAPE){
 //                loop = false;
 //            }

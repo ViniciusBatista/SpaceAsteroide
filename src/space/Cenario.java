@@ -26,36 +26,36 @@ public class Cenario {
     private final Keyboard teclado;
     private final ControleInimigos ConIni;
     private Explosion explosion;
-<<<<<<< HEAD
+
     private GameImage imgMenu;
     private boolean sair, pause;
     private int menu;
-=======
->>>>>>> deb50da71ea3c639b8c1e096dda4d1d7a29397de
+
 
     public Cenario(Window janela) {
         this.janela = janela;
         cena = new Scene();
         nave = new Nave(100, 280, cena);
-<<<<<<< HEAD
-        objInimigo = new Inimigos();
+
         cena.loadFromFile(URL.scenario("cenario.scn")); //Só para testes esse não sera o cenario do jogo
-=======
+
         objInimigo = new Inimigo("asteroide1.png");
         objInimigo2 = new Inimigo2("asteroide2.png");
         cena.loadFromFile(URL.scenario("cenario.scn"));//Só para testes esse não sera o cenario do jogo
->>>>>>> deb50da71ea3c639b8c1e096dda4d1d7a29397de
+
         teclado = janela.getKeyboard();
         explosion = new Explosion();
         ConIni = new ControleInimigos();
         Som.play("song.wav");
-<<<<<<< HEAD
 
-=======
->>>>>>> deb50da71ea3c639b8c1e096dda4d1d7a29397de
         run();
     }
-
+    // Cara pq assim, Eu fiz alteracao ai deu erro quando baixei a tua. Ai eu fiz o commit do erro e quando baixei de novo veio com o erro, ele baixa a ultima alteracao
+    //to ligado
+    //era para eu ter deletado minhas class baixava a tua e alterava e fazia o commit
+    //aham mais eu acho que assim vai da certo alterei pouca coisa nessa classe 
+    
+    //Tua classe cenario não pegou as alterações que eu fiz na minha 
     public void run() {
         sair = true;
         pause = true;
@@ -64,20 +64,23 @@ public class Cenario {
             while (pause) {
                 //cena.draw();
 
-<<<<<<< HEAD
                 cena.moveScene(nave);
 
                 nave.x += cena.getXOffset();
                 nave.y += cena.getYOffset();
                 nave.mover(janela, teclado);
                 nave.atirar(janela, cena, teclado, objInimigo);
+                nave.atirar(janela, cena, teclado, objInimigo2);
 
                 nave.update(ConIni, nave);
                 nave.printPoints(janela);
                 nave.draw();
                 ConIni.inimigo(cena);
-                nave.updateCollision();
+                ConIni.inimigo2(cena);
+                nave.updateCollisionNave();
+                nave.updateCollisionNave2();
                 objInimigo.morrer();
+                objInimigo2.morrer();
 
                 explosion.update();
                 explosion.draw();
@@ -124,40 +127,39 @@ public class Cenario {
                 }
             }
             
+//
+//            cena.moveScene(nave);
+//
+//            nave.x += cena.getXOffset();
+//            nave.y += cena.getYOffset();
+//            nave.mover(janela, teclado);
+//            //nave.atirar(janela, cena, teclado, objInimigo);
+//            nave.atirar(janela, cena, teclado, objInimigo2);
+//
+//            nave.update(ConIni, nave);
+//            nave.printPoints(janela);
+//            nave.draw();
+//            ConIni.inimigo(cena);
+//            ConIni.inimigo2(cena);
+//            nave.updateCollisionNave();
+//            nave.updateCollisionNave2();
+//            objInimigo.morrer();
+//            objInimigo2.morrer();
+//
+//            explosion.update();
+//            explosion.draw();
+//
+////            ConIni.update(nave);
+////            objInimigo.draw();
+//            //janela.delay(1);
+            
             imgMenu.draw();
             janela.update();
-=======
-            cena.moveScene(nave);
 
-            nave.x += cena.getXOffset();
-            nave.y += cena.getYOffset();
-            nave.mover(janela, teclado);
-            //nave.atirar(janela, cena, teclado, objInimigo);
-            nave.atirar(janela, cena, teclado, objInimigo2);
-
-            nave.update(ConIni, nave);
-            nave.printPoints(janela);
-            nave.draw();
-            ConIni.inimigo(cena);
-            ConIni.inimigo2(cena);
-            nave.updateCollisionNave();
-            nave.updateCollisionNave2();
-            objInimigo.morrer();
-            objInimigo2.morrer();
-
-            explosion.update();
-            explosion.draw();
-
-//            ConIni.update(nave);
-//            objInimigo.draw();
-            //janela.delay(1);
-            janela.update();
-
-            if (teclado.keyDown(Keyboard.ESCAPE_KEY)) {
+            if (teclado.keyDown(KeyEvent.VK_ESCAPE)) {
                 break;
             }
 
->>>>>>> deb50da71ea3c639b8c1e096dda4d1d7a29397de
         }
     }
 }
