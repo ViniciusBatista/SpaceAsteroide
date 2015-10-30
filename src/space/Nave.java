@@ -31,8 +31,6 @@ public class Nave extends Sprite {
     ControleTiro tiros = new ControleTiro();
     Scene cena;
     ControleInimigos conInimigos = new ControleInimigos();
-//    ControleInimigos inimigos = new ControleInimigos();
-//    private int cont = 0;
 
     public Nave(int x, int y, Scene cena) {
         super(URL.sprite("nave.png"));
@@ -42,25 +40,15 @@ public class Nave extends Sprite {
         this.cena = cena;
         live = 3;
     }
-//
-//    public void inimigo(Scene cena) {
-//        if (cont < 500) {
-//            cont++;
-//        } else {
-//            inimigos.adicionaInimigo(cena);
-//            cont = 0;
-//        }
-//        inimigos.run();
-//    }
-    
-      public void updateCollision (){//Método que verifica a colisão da nave com o asteroide 
+
+    public void updateCollisionNave() {//Método que verifica a colisão da nave com o asteroide 
         ListIterator<Inimigos> astit = ControleInimigos.inimigos.listIterator();
-        while (astit.hasNext()){
+        while (astit.hasNext()) {
             GameObject asteroid = astit.next();
-            if (this.collided(asteroid)){
+            if (this.collided(asteroid)) {
                 System.out.println("Colisão da nave com o asteroide");
                 System.out.println("Live" + live);
-                if (--live == 0){//Verifica se o live da nave é maior que 3, se não game over
+                if (--live == 0) {//Verifica se o live da nave é maior que 3, se não game over
                     System.exit(0);
                 }
                 cena.removeOverlay(asteroid);
@@ -69,27 +57,43 @@ public class Nave extends Sprite {
             }
         }
     }
-      
+    
+        public void updateCollisionNave2() {//Método que verifica a colisão da nave com o asteroide 
+        ListIterator<Inimigos> astit = ControleInimigos.inimigos2.listIterator();
+        while (astit.hasNext()) {
+            GameObject asteroid = astit.next();
+            if (this.collided(asteroid)) {
+                System.out.println("Colisão da nave com o asteroide");
+                System.out.println("Live" + live);
+                if (--live == 0) {//Verifica se o live da nave é maior que 3, se não game over
+                    System.exit(0);
+                }
+                cena.removeOverlay(asteroid);
+                new Sound(URL.audio("explosion.wav")).play();
+                astit.remove();
+            }
+        }
+    }
+
     public void atirar(Window janela, Scene cena, Keyboard teclado, Inimigos inimigo) {//Método que adiciona o tiro
         if (teclado.keyDown(Keyboard.SPACE_KEY)) {
             tiros.adicionaTiro(x + 110, y + 35, cena);
         }
     }
-    
-    public void update(ControleInimigos inimigo, Nave nave){//Chamada do método que verifica se o tiro colidiu com a nave
+
+    public void update(ControleInimigos inimigo, Nave nave) {//Chamada do método que verifica se o tiro colidiu com a nave
         tiros.updateCollsionShort(inimigo.inimigos, nave);
+        tiros.updateCollsionShortsIni2(inimigo.inimigos2, nave);
     }
 
     Font font = new Font("Calibri", Font.TRUETYPE_FONT, 25);
-    public void printPoints(Window janela){//Método que printa na tela a quantidade de pontos e de vidas do jogador.
-        janela.drawText("Pontos: " + (int)points, 30, 30, Color.WHITE, font);
+
+    public void printPoints(Window janela) {//Método que printa na tela a quantidade de pontos e de vidas do jogador.
+        janela.drawText("Pontos: " + (int) points, 30, 30, Color.WHITE, font);
 //        SalvarPontos.salvarPontos(points, "C:\\Users\\batista\\Documents\\NetBeansProjects\\space\\dist\\pontos.sav");
-        janela.drawText("Live: " + (int)live, 190, 30, Color.WHITE, font);
+        janela.drawText("Live: " + (int) live, 190, 30, Color.WHITE, font);
     }
-    
-    
-    
-    
+
     public void mover(Window janela, Keyboard teclado) {
         if (teclado.keyDown(Keyboard.LEFT_KEY)) {
             if (this.x > 0) {

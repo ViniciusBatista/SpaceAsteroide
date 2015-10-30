@@ -21,25 +21,38 @@ public class Cenario {
     private final Window janela;
     private final Scene cena;
     private final Nave nave;
-    private Inimigos objInimigo;
+    private Inimigo objInimigo;
+    private Inimigo2 objInimigo2;
     private final Keyboard teclado;
     private final ControleInimigos ConIni;
     private Explosion explosion;
+<<<<<<< HEAD
     private GameImage imgMenu;
     private boolean sair, pause;
     private int menu;
+=======
+>>>>>>> deb50da71ea3c639b8c1e096dda4d1d7a29397de
 
     public Cenario(Window janela) {
         this.janela = janela;
         cena = new Scene();
         nave = new Nave(100, 280, cena);
+<<<<<<< HEAD
         objInimigo = new Inimigos();
         cena.loadFromFile(URL.scenario("cenario.scn")); //Só para testes esse não sera o cenario do jogo
+=======
+        objInimigo = new Inimigo("asteroide1.png");
+        objInimigo2 = new Inimigo2("asteroide2.png");
+        cena.loadFromFile(URL.scenario("cenario.scn"));//Só para testes esse não sera o cenario do jogo
+>>>>>>> deb50da71ea3c639b8c1e096dda4d1d7a29397de
         teclado = janela.getKeyboard();
         explosion = new Explosion();
         ConIni = new ControleInimigos();
         Som.play("song.wav");
+<<<<<<< HEAD
 
+=======
+>>>>>>> deb50da71ea3c639b8c1e096dda4d1d7a29397de
         run();
     }
 
@@ -51,6 +64,7 @@ public class Cenario {
             while (pause) {
                 //cena.draw();
 
+<<<<<<< HEAD
                 cena.moveScene(nave);
 
                 nave.x += cena.getXOffset();
@@ -112,6 +126,38 @@ public class Cenario {
             
             imgMenu.draw();
             janela.update();
+=======
+            cena.moveScene(nave);
+
+            nave.x += cena.getXOffset();
+            nave.y += cena.getYOffset();
+            nave.mover(janela, teclado);
+            //nave.atirar(janela, cena, teclado, objInimigo);
+            nave.atirar(janela, cena, teclado, objInimigo2);
+
+            nave.update(ConIni, nave);
+            nave.printPoints(janela);
+            nave.draw();
+            ConIni.inimigo(cena);
+            ConIni.inimigo2(cena);
+            nave.updateCollisionNave();
+            nave.updateCollisionNave2();
+            objInimigo.morrer();
+            objInimigo2.morrer();
+
+            explosion.update();
+            explosion.draw();
+
+//            ConIni.update(nave);
+//            objInimigo.draw();
+            //janela.delay(1);
+            janela.update();
+
+            if (teclado.keyDown(Keyboard.ESCAPE_KEY)) {
+                break;
+            }
+
+>>>>>>> deb50da71ea3c639b8c1e096dda4d1d7a29397de
         }
     }
 }
