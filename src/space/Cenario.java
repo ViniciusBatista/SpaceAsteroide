@@ -35,6 +35,8 @@ public class Cenario {
         explosion = new Explosion();
         ConIni = new ControleInimigos();
         Som.play("song.wav");
+        
+        run();
     }
 
     public void run() {
