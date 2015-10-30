@@ -16,7 +16,7 @@ import jplay.*;
 public class ControleTiro {
 
     LinkedList<Tiro> tiros = new LinkedList<>();
-    Inimigos ini = new Inimigos();
+    Inimigo ini = new Inimigo("asteroide1.png");
     Nave nave;
     Scene cena;
     Explosion explosion = new Explosion();
@@ -30,6 +30,27 @@ public class ControleTiro {
     }
 
     public void updateCollsionShort(LinkedList<Inimigos> inimigos, Nave nave) {//Metodo verifica a colisão do inimigo com o tiro
+        this.nave = nave;
+        ListIterator<Tiro> it = tiros.listIterator();
+        while (it.hasNext()) {
+            Tiro tiro = it.next();
+            tiro.mover();
+            for (Inimigos j : inimigos) {
+                if (tiro.collided(j)) {
+                    it.remove();
+                    nave.points += 5;//Incrementa os pontos do jogador na partida
+                    System.out.println("Pontos: " + nave.points);
+                    new Sound(URL.audio("explosion.wav")).play();
+                    cena.removeOverlay(j);
+                    inimigos.remove(j);
+                    cena.removeOverlay(tiro);
+                    break;
+                }
+            }
+        }
+    }
+    
+        public void updateCollsionShortsIni2(LinkedList<Inimigos> inimigos, Nave nave) {//Metodo verifica a colisão do inimigo com o tiro
         this.nave = nave;
         ListIterator<Tiro> it = tiros.listIterator();
         while (it.hasNext()) {

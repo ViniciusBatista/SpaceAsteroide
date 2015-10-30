@@ -25,8 +25,8 @@ public class Inimigos extends Sprite {
         return valor;
     }
 
-    public Inimigos() {
-        super(URL.sprite("asteroide1.png"));
+    public Inimigos(String img) {
+        super(URL.sprite(img));
         yPos = geraY();
         this.x = 1200;
         this.y = yPos;
@@ -44,7 +44,7 @@ public class Inimigos extends Sprite {
     public void movendo() {
         this.x -= velocidade;
         movendo = true;
-     
+
         if (movendo) {
             update();
             movendo = false;
