@@ -8,13 +8,7 @@ package space;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ListIterator;
-import jplay.GameObject;
-import jplay.Keyboard;
-import jplay.Scene;
-import jplay.Sound;
-import jplay.Sprite;
-import jplay.URL;
-import jplay.Window;
+import jplay.*;
 
 /**
  *
@@ -28,12 +22,13 @@ public class Nave extends Sprite {
     public double velocidade = 1.5;//Velocidade de movimentação da nave
     public double points = 0;
     boolean movendo = false;//variavel para saber se movimentando
+    private int limiteTiros = 0;
     ControleTiro tiros = new ControleTiro();
     Scene cena;
     ControleInimigos conInimigos = new ControleInimigos();
 
     public Nave(int x, int y, Scene cena) {
-        super(URL.sprite("nave.png"));
+        super(URL.sprite("naveAzul.png"));
         this.x = x;
         this.y = y;
         this.setTotalDuration(2000);
@@ -51,6 +46,7 @@ public class Nave extends Sprite {
                 if (--live == 0) {//Verifica se o live da nave é maior que 3, se não game over
                     System.exit(0);
                 }
+                super(URL.sprite("naveVermelha.png"));
                 cena.removeOverlay(asteroid);
                 new Sound(URL.audio("explosion.wav")).play();
                 astit.remove();
@@ -76,9 +72,14 @@ public class Nave extends Sprite {
     }
 
     public void atirar(Window janela, Scene cena, Keyboard teclado, Inimigos inimigo) {//Método que adiciona o tiro
-        if (teclado.keyDown(Keyboard.SPACE_KEY)) {
+        if (teclado.keyDown(Keyboard.SPACE_KEY) && limiteTiros < 25) { //Pergunta se o limiteTiros atingiu o limite
             tiros.adicionaTiro(x + 110, y + 35, cena);
+//            limiteTiros++; //Incrementa o limiteTiros
         }
+//        if(points > 50){ //Ver se os pontos atigiram o record e add mais tiros
+//            limiteTiros = 0;
+//        } 
+            
     }
 
     public void update(ControleInimigos inimigo, Nave nave) {//Chamada do método que verifica se o tiro colidiu com a nave
@@ -92,6 +93,7 @@ public class Nave extends Sprite {
         janela.drawText("Pontos: " + (int) points, 30, 30, Color.WHITE, font);
 //        SalvarPontos.salvarPontos(points, "C:\\Users\\batista\\Documents\\NetBeansProjects\\space\\dist\\pontos.sav");
         janela.drawText("Live: " + (int) live, 190, 30, Color.WHITE, font);
+            
     }
 
     public void mover(Window janela, Keyboard teclado) {

@@ -77,50 +77,6 @@ public class Space {
             imgMenu.draw();
             janela.update();
             
-//            if (teclado.keyDown(KeyEvent.VK_DOWN)) {
-//                switch (menu) {
-//                    case 1:
-//                        imgMenu = new GameImage(URL.sprite("menuMulti.png"));
-//                        menu = 2;
-//                        break;
-//
-//                    case 2:
-//                        imgMenu = new GameImage(URL.sprite("menuSair.png"));
-//                        menu = 0;
-//                        break;
-//                }
-//            }
-//
-//            if (teclado.keyDown(KeyEvent.VK_UP)) {
-//                switch (menu) {
-//                    case 2:
-//                        imgMenu = new GameImage(URL.sprite("menuPlayer.png"));
-//                        menu = 1;
-//                        break;
-//
-//                    case 0:
-//                        imgMenu = new GameImage(URL.sprite("menuMulti.png"));
-//                        menu = 2;
-//                        break;
-//                }
-//            }
-//
-//            if (teclado.keyDown(KeyEvent.VK_ENTER)) {
-//                switch (menu) {
-//                    case 1:
-//                        cenario = new Cenario(janela);
-//                        break;
-//
-//                    case 2:
-//                        //não faz nada
-//                        break;
-//
-//                    case 0:
-//                        loop = false;
-//                        janela.exit();
-//                        break;
-//                }
-//            }
 
         }
 

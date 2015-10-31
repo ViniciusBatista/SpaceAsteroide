@@ -6,11 +6,7 @@
 package space;
 
 import java.awt.event.KeyEvent;
-import jplay.GameImage;
-import jplay.Keyboard;
-import jplay.Scene;
-import jplay.URL;
-import jplay.Window;
+import jplay.*;
 
 /**
  *
@@ -50,12 +46,7 @@ public class Cenario {
 
         run();
     }
-    // Cara pq assim, Eu fiz alteracao ai deu erro quando baixei a tua. Ai eu fiz o commit do erro e quando baixei de novo veio com o erro, ele baixa a ultima alteracao
-    //to ligado
-    //era para eu ter deletado minhas class baixava a tua e alterava e fazia o commit
-    //aham mais eu acho que assim vai da certo alterei pouca coisa nessa classe 
     
-    //Tua classe cenario não pegou as alterações que eu fiz na minha 
     public void run() {
         sair = true;
         pause = true;
@@ -91,7 +82,7 @@ public class Cenario {
                 janela.update();
 
                 if (teclado.keyDown(KeyEvent.VK_ESCAPE)) {
-                    imgMenu = new GameImage(URL.sprite("pauseSim.png"));
+                    imgMenu = new GameImage(URL.sprite("telaFundoPause.png"));
                     imgMenu.draw();
                     janela.update();
                     menu = 0;
@@ -102,7 +93,7 @@ public class Cenario {
             
             switch(menu){
                 case 0: 
-                    imgMenu = new GameImage(URL.sprite("pauseSim2.png"));
+                    imgMenu = new GameImage(URL.sprite("pauseSim.png"));
                     break;
                 case 1:
                     imgMenu = new GameImage(URL.sprite("pauseNao.png"));
@@ -127,37 +118,11 @@ public class Cenario {
                 }
             }
             
-//
-//            cena.moveScene(nave);
-//
-//            nave.x += cena.getXOffset();
-//            nave.y += cena.getYOffset();
-//            nave.mover(janela, teclado);
-//            //nave.atirar(janela, cena, teclado, objInimigo);
-//            nave.atirar(janela, cena, teclado, objInimigo2);
-//
-//            nave.update(ConIni, nave);
-//            nave.printPoints(janela);
-//            nave.draw();
-//            ConIni.inimigo(cena);
-//            ConIni.inimigo2(cena);
-//            nave.updateCollisionNave();
-//            nave.updateCollisionNave2();
-//            objInimigo.morrer();
-//            objInimigo2.morrer();
-//
-//            explosion.update();
-//            explosion.draw();
-//
-////            ConIni.update(nave);
-////            objInimigo.draw();
-//            //janela.delay(1);
-            
             imgMenu.draw();
             janela.update();
 
             if (teclado.keyDown(KeyEvent.VK_ESCAPE)) {
-                break;
+                sair = false;
             }
 
         }
