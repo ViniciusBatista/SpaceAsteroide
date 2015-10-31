@@ -31,6 +31,17 @@ public class Inimigos extends Sprite {
         this.x = 1200;
         this.y = yPos;
         this.setTotalDuration(2000);
+        if(MenuDificuldades.dificuldade == 1){ //dificuldade facil
+            this.velocidade = 0.6;
+        }else{
+            if(MenuDificuldades.dificuldade == 2){ //dificuldade medio
+                this.velocidade = 1;
+            }else{
+                if(MenuDificuldades.dificuldade == 3){ //dificuldade dificil
+                    this.velocidade = 1.4;
+                }
+            }
+        }
     }
 
     public void movendo() {
