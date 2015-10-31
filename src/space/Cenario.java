@@ -48,7 +48,7 @@ public class Cenario {
             nave.x += cena.getXOffset();
             nave.y += cena.getYOffset();
             nave.mover(janela, teclado);
-            //nave.atirar(janela, cena, teclado, objInimigo);
+            nave.atirar(janela, cena, teclado, objInimigo);
             nave.atirar(janela, cena, teclado, objInimigo2);
 
             nave.update(ConIni, nave);
@@ -58,8 +58,6 @@ public class Cenario {
             ConIni.inimigo2(cena);
             nave.updateCollisionNave();
             nave.updateCollisionNave2();
-            objInimigo.morrer();
-            objInimigo2.morrer();
 
             explosion.update();
             explosion.draw();

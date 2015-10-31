@@ -33,14 +33,6 @@ public class Inimigos extends Sprite {
         this.setTotalDuration(2000);
     }
 
-    public void morrer() {
-        if (energia <= 0) {
-            this.velocidade = 0;
-            this.movendo = false;
-            this.x = 1000000;
-        }
-    }
-
     public void movendo() {
         this.x -= velocidade;
         movendo = true;
