@@ -39,8 +39,8 @@ public class ControleInimigos {
 
     public void inimigo(Scene cena) {//Sorteia a frequencia em que os asteroides serão adicionados
         Random random = new Random();
-        int num = random.nextInt(100);
-        if (num == 1) {
+        int num = random.nextInt(130);
+        if (num == 10) {
             adicionaInimigo(cena);
         }
         run();
@@ -49,7 +49,7 @@ public class ControleInimigos {
     public void inimigo2(Scene cena) {//Sorteia a frequencia em que os asteroides serão adicionados
         Random random = new Random();
         int num = random.nextInt(1000);
-        if (num == 1) {
+        if (num == 10) {
             adicionaInimigo2(cena);
         }
         run2();

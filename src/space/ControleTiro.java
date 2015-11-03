@@ -59,11 +59,15 @@ public class ControleTiro {
             for (Inimigos j : inimigos) {
                 if (tiro.collided(j)) {
                     it.remove();
-                    nave.points += 5;//Incrementa os pontos do jogador na partida
                     System.out.println("Pontos: " + nave.points);
                     new Sound(URL.audio("explosion.wav")).play();
+                    if (j.energia == 0){
+                    nave.points += 8;//Incrementa os pontos do jogador na partida
                     cena.removeOverlay(j);
                     inimigos.remove(j);
+                    }else {
+                        j.energia--;
+                    }
                     cena.removeOverlay(tiro);
                     break;
                 }

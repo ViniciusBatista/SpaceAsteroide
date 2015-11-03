@@ -91,9 +91,9 @@ public class Nave extends Sprite {
 
     public void printPoints(Window janela) {//Método que printa na tela a quantidade de pontos e de vidas do jogador.
         janela.drawText("Pontos: " + (int) points, 30, 30, Color.WHITE, font);
-//        SalvarPontos.salvarPontos(points, "C:\\Users\\batista\\Documents\\NetBeansProjects\\space\\dist\\pontos.sav");
+      //  SalvarPontos.salvarPontos(points, "C:\\Users\\batista\\Documents\\NetBeansProjects\\space\\dist\\pontos.txt");
         janela.drawText("Live: " + (int) live, 190, 30, Color.WHITE, font);
-            
+       // SalvarPontos.resgatar("C:\\Users\\batista\\Documents\\NetBeansProjects\\space\\dist\\pontos.txt");
     }
 
     public void mover(Window janela, Keyboard teclado) {

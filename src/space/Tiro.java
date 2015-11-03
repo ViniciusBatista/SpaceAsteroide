@@ -14,7 +14,7 @@ import jplay.URL;
  */
 public class Tiro extends Sprite{
    
-    protected static final int VELOCIDADE_TIRO = 3;
+    protected static final int VELOCIDADE_TIRO = 2;
     protected boolean movendo = false;
     protected int direcao = 3;
 

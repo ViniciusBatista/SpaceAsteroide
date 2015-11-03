@@ -38,6 +38,7 @@ public class Explosion {
             e.update();
             if (!e.isPlaying()){
                 s.remove();
+                
             }
         }
     }

@@ -10,7 +10,7 @@ public class MenuDificuldades {
         private KeyEvent evt;
         private GameImage imgMenu;
         private boolean loop = true;
-        private int menu = 0;
+        private int menu = 1;
         public static int dificuldade;
 
     public MenuDificuldades(Window janela) {
@@ -22,7 +22,7 @@ public class MenuDificuldades {
     }
     
     public void run(){
-        menu = 1;
+        //menu = 1;
         loop = true;
         
         while(loop){
@@ -41,8 +41,7 @@ public class MenuDificuldades {
             if (teclado.keyDown(KeyEvent.VK_DOWN)) {
                 if (menu == 1) {
                     menu = 2;
-                }
-                if (menu == 2) {
+                }else if (menu == 2) {
                     menu = 3;
                 }
             }
@@ -50,8 +49,7 @@ public class MenuDificuldades {
             if (teclado.keyDown(KeyEvent.VK_UP)) {
                 if (menu == 3) {
                     menu = 2;
-                }
-                if (menu == 2) {
+                }else  if (menu == 2) {
                     menu = 1;
                 }
             }
