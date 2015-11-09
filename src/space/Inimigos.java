@@ -15,7 +15,7 @@ import jplay.*;
 public class Inimigos extends Sprite {
 
     private double velocidade = 0.8;
-    public double energia = 100;
+    public double energia = 1;
     private boolean movendo = false;
     private final int yPos;
 
@@ -28,27 +28,19 @@ public class Inimigos extends Sprite {
     public Inimigos(String img) {
         super(URL.sprite(img));
         yPos = geraY();
-        this.x = 1200;
+        this.x = 1300;
         this.y = yPos;
         this.setTotalDuration(2000);
         if(MenuDificuldades.dificuldade == 1){ //dificuldade facil
-            this.velocidade = 0.6;
+            this.velocidade = 0.5;
         }else{
             if(MenuDificuldades.dificuldade == 2){ //dificuldade medio
                 this.velocidade = 1;
             }else{
                 if(MenuDificuldades.dificuldade == 3){ //dificuldade dificil
-                    this.velocidade = 1.4;
+                    this.velocidade = 1.2;
                 }
             }
-        }
-    }
-
-    public void morrer() {
-        if (energia <= 0) {
-            this.velocidade = 0;
-            this.movendo = false;
-            this.x = 1000000;
         }
     }
 

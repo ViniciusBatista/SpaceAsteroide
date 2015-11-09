@@ -27,7 +27,6 @@ public class Cenario {
     private boolean sair, pause;
     private int menu;
 
-
     public Cenario(Window janela) {
         this.janela = janela;
         cena = new Scene();
@@ -46,85 +45,109 @@ public class Cenario {
 
         run();
     }
-    
+
     public void run() {
-        sair = true;
-        pause = true;
-        menu = 0;
-        while (sair) {
-            while (pause) {
-                //cena.draw();
 
-                cena.moveScene(nave);
+        while (true) {
+            //cena.draw();
 
-                nave.x += cena.getXOffset();
-                nave.y += cena.getYOffset();
-                nave.mover(janela, teclado);
-                nave.atirar(janela, cena, teclado, objInimigo);
-                nave.atirar(janela, cena, teclado, objInimigo2);
+            cena.moveScene(nave);
 
-                nave.update(ConIni, nave);
-                nave.printPoints(janela);
-                nave.draw();
-                ConIni.inimigo(cena);
-                ConIni.inimigo2(cena);
-                nave.updateCollisionNave();
-                nave.updateCollisionNave2();
-                objInimigo.morrer();
-                objInimigo2.morrer();
+            nave.x += cena.getXOffset();
+            nave.y += cena.getYOffset();
+            nave.mover(janela, teclado);
+            nave.atirar(janela, cena, teclado, objInimigo);
+            nave.atirar(janela, cena, teclado, objInimigo2);
 
-                explosion.update();
-                explosion.draw();
+            nave.update(ConIni, nave);
+            nave.printPoints(janela);
+            
+            nave.draw();
+            ConIni.inimigo(cena);
+            ConIni.inimigo2(cena);
+            nave.updateCollisionNave();
+            nave.updateCollisionNave2();
+
+            explosion.update();
+            explosion.draw();
+
+            sair = true;
+            pause = true;
+            menu = 0;
+            while (sair) {
+                while (pause) {
+                    //cena.draw();
+
+                    cena.moveScene(nave);
+
+                    nave.x += cena.getXOffset();
+                    nave.y += cena.getYOffset();
+                    nave.mover(janela, teclado);
+                    nave.atirar(janela, cena, teclado, objInimigo);
+                    nave.atirar(janela, cena, teclado, objInimigo2);
+
+                    nave.update(ConIni, nave);
+                    nave.printPoints(janela);
+                    nave.draw();
+                    ConIni.inimigo(cena);
+                    ConIni.inimigo2(cena);
+                    nave.updateCollisionNave();
+                    nave.updateCollisionNave2();
+
+                    explosion.update();
+                    explosion.draw();
 
 //            ConIni.update(nave);
 //            objInimigo.draw();
-                //janela.delay(1);
+                    //janela.delay(1);
+                    janela.update();
+
+                    if (teclado.keyDown(KeyEvent.VK_ESCAPE)) {
+                        imgMenu = new GameImage(URL.sprite("telaFundoPause.png"));
+                        imgMenu.draw();
+                        janela.update();
+                        menu = 0;
+                        pause = false;
+                    }
+
+                }
+
+                switch (menu) {
+                    case 0:
+                        imgMenu = new GameImage(URL.sprite("pauseSim.png"));
+                        break;
+                    case 1:
+                        imgMenu = new GameImage(URL.sprite("pauseNao.png"));
+                        break;
+                }
+
+                if (teclado.keyDown(KeyEvent.VK_RIGHT)) {
+                    menu = 1;
+                }
+                if (teclado.keyDown(KeyEvent.VK_LEFT)) {
+                    menu = 0;
+                }
+                if (teclado.keyDown(KeyEvent.VK_ENTER)) {
+                    switch (menu) {
+                        case 0:
+                            pause = true;
+                            break;
+                        case 1:
+                            sair = true;
+                            System.exit(0);
+                            break;
+
+                    }
+                }
+
+                imgMenu.draw();
                 janela.update();
 
                 if (teclado.keyDown(KeyEvent.VK_ESCAPE)) {
-                    imgMenu = new GameImage(URL.sprite("telaFundoPause.png"));
-                    imgMenu.draw();
-                    janela.update();
-                    menu = 0;
-                    pause = false;
+                    sair = false;
                 }
 
             }
-            
-            switch(menu){
-                case 0: 
-                    imgMenu = new GameImage(URL.sprite("pauseSim.png"));
-                    break;
-                case 1:
-                    imgMenu = new GameImage(URL.sprite("pauseNao.png"));
-                    break;
-            }
-            
-            if(teclado.keyDown(KeyEvent.VK_RIGHT)){
-                menu = 1;
-            }
-            if(teclado.keyDown(KeyEvent.VK_LEFT)){
-                menu = 0;
-            }
-            if(teclado.keyDown(KeyEvent.VK_ENTER)){
-                switch(menu){
-                    case 0:
-                        pause = true;
-                        break;
-                    case 1:
-                        sair = false;
-                        break;
-                        
-                }
-            }
-            
-            imgMenu.draw();
-            janela.update();
-
-            if (teclado.keyDown(KeyEvent.VK_ESCAPE)) {
-                sair = false;
-            }
-
         }
     }
 }

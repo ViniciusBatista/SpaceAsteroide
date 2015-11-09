@@ -46,6 +46,10 @@ public class Nave extends Sprite {
                 if (--live == 0) {//Verifica se o live da nave é maior que 3, se não game over
                     System.exit(0);
                 }
+<<<<<<< HEAD
+=======
+               // super(URL.sprite("naveAzul.png"));
+>>>>>>> 2e8b5f39e68659b2dc68993eeb47ffbfd465178f
                 cena.removeOverlay(asteroid);
                 new Sound(URL.audio("explosion.wav")).play();
                 astit.remove();
@@ -90,9 +94,9 @@ public class Nave extends Sprite {
 
     public void printPoints(Window janela) {//Método que printa na tela a quantidade de pontos e de vidas do jogador.
         janela.drawText("Pontos: " + (int) points, 30, 30, Color.WHITE, font);
-//        SalvarPontos.salvarPontos(points, "C:\\Users\\batista\\Documents\\NetBeansProjects\\space\\dist\\pontos.sav");
+      //  SalvarPontos.salvarPontos(points, "C:\\Users\\batista\\Documents\\NetBeansProjects\\space\\dist\\pontos.txt");
         janela.drawText("Live: " + (int) live, 190, 30, Color.WHITE, font);
-            
+       // SalvarPontos.resgatar("C:\\Users\\batista\\Documents\\NetBeansProjects\\space\\dist\\pontos.txt");
     }
 
     public void mover(Window janela, Keyboard teclado) {

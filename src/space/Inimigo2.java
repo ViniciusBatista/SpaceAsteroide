@@ -15,13 +15,24 @@ public class Inimigo2 extends Inimigos {
      *
      * @param img
      */
-    public Inimigo2(String img){
-    super(img);
-}
+    public static int energia = 2;
+
+    public Inimigo2(String img) {
+        super(img);
+    }
 
     @Override
     public void movendo() {
         super.movendo();
 
     }
+
+    public static int getEnergia() {
+        return energia;
+    }
+
+    public static void setEnergia(int energia) {
+        Inimigo2.energia = energia;
+    }
+    
 }

@@ -5,38 +5,50 @@
  */
 package space;
 
-import java.io.FileOutputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 
 /**
  *
  * @author batista
  */
 public class SalvarPontos {
-    
-    public static void salvarPontos (Double val, String caminho){
-        try{
-            FileOutputStream saveFile = new FileOutputStream(caminho);
-            ObjectOutputStream saveStream = new ObjectOutputStream(saveFile);
-            saveStream.writeDouble(val);
-            saveStream.close();
-        }catch(IOException e){
-            e.printStackTrace();
-        } 
+
+    public static void salvarPontos(Double val, String caminho) throws IOException{
+//        try {
+//            FileOutputStream saveFile = new FileOutputStream(caminho);
+//            ObjectOutputStream saveStream = new ObjectOutputStream(saveFile);
+//            saveStream.writeDouble(val);
+//            saveStream.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+        FileWriter arq = new FileWriter(caminho);
+        PrintWriter gravarArq = new PrintWriter(arq);
+        gravarArq.printf("+--Pontos--+%n");
+        gravarArq.printf("%f" ,val);
+        arq.close();
+        
     }
-    
-    public static Double resgatar(String caminho){
+
+    public static Double resgatar(String caminho) {
         Double valor = 0.0;
-        
+
         try {
-            FileInputStream restFile = new FileInputStream(caminho);
-            ObjectInputStream restStream = new ObjectInputStream(restFile);
-            valor = restStream.readDouble();
-        
-        }catch (IOException e){
+            FileReader restFile = new FileReader(caminho);
+            //ObjectInputStream restStream = new ObjectInputStream(restFile);
+            BufferedReader lerArq = new BufferedReader(restFile);
+            // valor = restStream.readDouble();
+            String linha = lerArq.readLine();
+            while (linha != null) {
+                System.out.println("Linha" + linha);
+                linha = lerArq.readLine();
+            }
+            restFile.close();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return valor;
