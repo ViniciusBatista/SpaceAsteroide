@@ -46,7 +46,6 @@ public class Nave extends Sprite {
                 if (--live == 0) {//Verifica se o live da nave é maior que 3, se não game over
                     System.exit(0);
                 }
-                super(URL.sprite("naveVermelha.png"));
                 cena.removeOverlay(asteroid);
                 new Sound(URL.audio("explosion.wav")).play();
                 astit.remove();

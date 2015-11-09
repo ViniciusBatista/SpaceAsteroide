@@ -17,9 +17,7 @@ public class Space {
     /**
      * @param args the command line arguments
      */
-    
     public static void main(String[] args) {
-        // TODO code application logic here
         Window janela = new Window(1280, 720);
         GameImage imgMenu;
         Keyboard teclado = janela.getKeyboard();
@@ -44,21 +42,23 @@ public class Space {
             if (teclado.keyDown(KeyEvent.VK_DOWN)) {
                 if (menu == 1) {
                     menu = 2;
-                }
-                if (menu == 2) {
-                    menu = 3;
+                } else {
+                    if (menu == 2) {
+                        menu = 1;
+                    }
                 }
             }
 
             if (teclado.keyDown(KeyEvent.VK_UP)) {
                 if (menu == 3) {
                     menu = 2;
-                }
-                if (menu == 2) {
-                    menu = 1;
+                } else {
+                    if (menu == 2) {
+                        menu = 1;
+                    }
                 }
             }
-            
+
             if (teclado.keyDown(KeyEvent.VK_ENTER)) {
                 switch (menu) {
                     case 1:
@@ -76,7 +76,6 @@ public class Space {
 
             imgMenu.draw();
             janela.update();
-            
 
         }
 
