@@ -19,11 +19,12 @@ public class Space {
      */
     public static void main(String[] args) {
         Window janela = new Window(1280, 720);
-        GameImage imgMenu;
         Keyboard teclado = janela.getKeyboard();
+        GameImage imgMenu;
+        Cenario cenario;
+        imgMenu = new GameImage(URL.sprite("menuPlayer.png"));
         boolean sair = true; //Variavel para finalizar o jogo
         int menu = 1;
-        imgMenu = new GameImage(URL.sprite("menuPlayer.png"));
 
         while (sair) {
 
@@ -80,7 +81,7 @@ public class Space {
                     case 1:
                         teclado.addKey(KeyEvent.VK_DOWN, KeyEvent.KEY_RELEASED); //Coloca o botao para voltar a ser KeyReleased
                         teclado.addKey(KeyEvent.VK_UP, KeyEvent.KEY_RELEASED); //Coloca o botao para voltar a ser KeyReleased
-                        Cenario cenario = new Cenario(janela); //Cria o cenario do jogo
+                        cenario = new Cenario(janela); //Cria o cenario do jogo
                         break;
                     case 2:
                         //progresso

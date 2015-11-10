@@ -6,6 +6,8 @@
 package space;
 
 import java.awt.event.KeyEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import jplay.*;
 
 /**
@@ -39,30 +41,47 @@ public class Cenario {
         explosion = new Explosion();
         ConIni = new ControleInimigos();
 
-//        while (cont > 0) {
-//            try {
-//                switch (cont) {
-//                    case 4:
-//                        imgMenu = new GameImage(URL.sprite("start3.png"));
-//                        break;
-//                    case 3:
-//                        imgMenu = new GameImage(URL.sprite("start2.png"));
-//                        break;
-//                    case 2:
-//                        imgMenu = new GameImage(URL.sprite("start1.png"));
-//                        break;
-//                    case 1:
-//                        imgMenu = new GameImage(URL.sprite("startGo.png"));
-//                        break;
-//                }
-//                imgMenu.draw();
-//                janela.update();
-//                Thread.sleep(1000);
-//            } catch (InterruptedException ex) {
-//                Logger.getLogger(Cenario.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//            cont--;
-//        }
+        while (cont > 0) { // Contagem regressiva para o inicio do game
+            try {
+                switch (cont) {
+                    case 4:
+                        cena.moveScene(nave);
+                        nave.draw();
+                        imgMenu = new GameImage(URL.sprite("telaFundoStart.png"));
+                        imgMenu.draw();
+                        imgMenu = new GameImage(URL.sprite("start3.png"));
+                        break;
+                    case 3:
+                        cena.moveScene(nave);
+                        nave.draw();
+                        imgMenu = new GameImage(URL.sprite("telaFundoStart.png"));
+                        imgMenu.draw();
+                        imgMenu = new GameImage(URL.sprite("start2.png"));
+                        break;
+                    case 2:
+                        cena.moveScene(nave);
+                        nave.draw();
+                        imgMenu = new GameImage(URL.sprite("telaFundoStart.png"));
+                        imgMenu.draw();
+                        imgMenu = new GameImage(URL.sprite("start1.png"));
+                        break;
+                    case 1:
+                        cena.moveScene(nave);
+                        nave.draw();
+                        imgMenu = new GameImage(URL.sprite("telaFundoStart.png"));
+                        imgMenu.draw();
+                        imgMenu = new GameImage(URL.sprite("startGo.png"));
+                        break;
+                }
+                imgMenu.draw();
+                janela.update();
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Cenario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            cont--;
+        }
+
         Som.play("song.wav");
         run();
     }
@@ -73,7 +92,6 @@ public class Cenario {
         menu = 0;
         while (sair) {
             while (pause) {
-
                 cena.moveScene(nave);
 
                 ConIni.inimigo(cena);
@@ -96,7 +114,7 @@ public class Cenario {
                 janela.update();
 
                 if (teclado.keyDown(KeyEvent.VK_ESCAPE)) {
-                    imgMenu = new GameImage(URL.sprite("telaFundoPause.png"));
+                    imgMenu = new GameImage(URL.sprite("telaFundoStart.png"));
                     imgMenu.draw();
                     janela.update();
                     menu = 0;
@@ -130,10 +148,10 @@ public class Cenario {
 
                 }
             }
-            
+
             imgMenu.draw();
             janela.update();
-            
+
         }
 
     }
