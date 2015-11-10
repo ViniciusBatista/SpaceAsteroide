@@ -14,38 +14,39 @@ import jplay.*;
  * @author batista
  */
 public class Explosion {
+
     private LinkedList<Sprite> explosion;
-    
-    public Explosion(){
-        explosion = new LinkedList<Sprite>();
+
+    public Explosion() {
+       explosion = new LinkedList<Sprite>();
     }
-    
-    public void appendExplosion (int x, int y){
+
+    public void appendExplosion(int x, int y) {
         System.out.println("Explosão");
         Sprite sprite = new Sprite(URL.sprite("explosion.png"), 74);
         sprite.x = x;
         sprite.y = y;
-        sprite.setTotalDuration(400);
-        sprite.setLoop(false);
+        sprite.setTotalDuration(2000);
         sprite.setSequence(0, 74);
+        sprite.setLoop(false);
         explosion.add(sprite);
     }
-    
-    public void update (){
+
+    public void update() {
         ListIterator<Sprite> s = explosion.listIterator();
-        while (s.hasNext()){
+        while (s.hasNext()) {
             Sprite e = s.next();
             e.update();
-            if (!e.isPlaying()){
+            if (!e.isPlaying()) {
                 s.remove();
-                
+
             }
         }
     }
-    
-    public void draw(){
+
+    public void draw() {
         ListIterator<Sprite> s = explosion.listIterator();
-        while (s.hasNext()){
+        while (s.hasNext()) {
             Sprite e = s.next();
             e.draw();
         }

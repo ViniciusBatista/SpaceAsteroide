@@ -31,18 +31,13 @@ public class Cenario {
         this.janela = janela;
         cena = new Scene();
         nave = new Nave(100, 280, cena);
-
-        cena.loadFromFile(URL.scenario("cenario.scn")); //Só para testes esse não sera o cenario do jogo
-
+        cena.loadFromFile(URL.scenario("cenario.scn"));
         objInimigo = new Inimigo("asteroide1.png");
         objInimigo2 = new Inimigo2("asteroide2.png");
-        cena.loadFromFile(URL.scenario("cenario.scn"));//Só para testes esse não sera o cenario do jogo
-
         teclado = janela.getKeyboard();
         explosion = new Explosion();
         ConIni = new ControleInimigos();
         Som.play("song.wav");
-
         run();
     }
 
@@ -51,7 +46,6 @@ public class Cenario {
         pause = true;
         while (sair) {
             while (pause) {
-                //cena.draw();
 
                 cena.moveScene(nave);
 
@@ -70,6 +64,7 @@ public class Cenario {
                 nave.updateCollisionNave();
                 nave.updateCollisionNave2();
 
+
                 explosion.update();
                 explosion.draw();
 
@@ -77,8 +72,7 @@ public class Cenario {
                 pause = true;
                 menu = 0;
                 while (sair) {
-                    while (pause) {
-                        //cena.draw();
+                    while (pause) {//Método pause bugado. 
 
                         cena.moveScene(nave);
 
@@ -99,9 +93,6 @@ public class Cenario {
                         explosion.update();
                         explosion.draw();
 
-//            ConIni.update(nave);
-//            objInimigo.draw();
-                        //janela.delay(1);
                         janela.update();
 
                         if (teclado.keyDown(KeyEvent.VK_ESCAPE)) {
