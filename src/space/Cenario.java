@@ -47,106 +47,104 @@ public class Cenario {
     }
 
     public void run() {
+        sair = true;
+        pause = true;
+        while (sair) {
+            while (pause) {
+                //cena.draw();
 
-        while (true) {
-            //cena.draw();
+                cena.moveScene(nave);
 
-            cena.moveScene(nave);
+                nave.x += cena.getXOffset();
+                nave.y += cena.getYOffset();
+                nave.mover(janela, teclado);
+                nave.atirar(janela, cena, teclado, objInimigo);
+                nave.atirar(janela, cena, teclado, objInimigo2);
 
-            nave.x += cena.getXOffset();
-            nave.y += cena.getYOffset();
-            nave.mover(janela, teclado);
-            nave.atirar(janela, cena, teclado, objInimigo);
-            nave.atirar(janela, cena, teclado, objInimigo2);
+                nave.update(ConIni, nave);
+                nave.printPoints(janela);
 
-            nave.update(ConIni, nave);
-            nave.printPoints(janela);
-            
-            nave.draw();
-            ConIni.inimigo(cena);
-            ConIni.inimigo2(cena);
-            nave.updateCollisionNave();
-            nave.updateCollisionNave2();
+                nave.draw();
+                ConIni.inimigo(cena);
+                ConIni.inimigo2(cena);
+                nave.updateCollisionNave();
+                nave.updateCollisionNave2();
 
-            explosion.update();
-            explosion.draw();
+                explosion.update();
+                explosion.draw();
 
-            sair = true;
-            pause = true;
-            menu = 0;
-            while (sair) {
-                while (pause) {
-                    //cena.draw();
+                sair = true;
+                pause = true;
+                menu = 0;
+                while (sair) {
+                    while (pause) {
+                        //cena.draw();
 
-                    cena.moveScene(nave);
+                        cena.moveScene(nave);
 
-                    nave.x += cena.getXOffset();
-                    nave.y += cena.getYOffset();
-                    nave.mover(janela, teclado);
-                    nave.atirar(janela, cena, teclado, objInimigo);
-                    nave.atirar(janela, cena, teclado, objInimigo2);
+                        nave.x += cena.getXOffset();
+                        nave.y += cena.getYOffset();
+                        nave.mover(janela, teclado);
+                        nave.atirar(janela, cena, teclado, objInimigo);
+                        nave.atirar(janela, cena, teclado, objInimigo2);
 
-                    nave.update(ConIni, nave);
-                    nave.printPoints(janela);
-                    nave.draw();
-                    ConIni.inimigo(cena);
-                    ConIni.inimigo2(cena);
-                    nave.updateCollisionNave();
-                    nave.updateCollisionNave2();
+                        nave.update(ConIni, nave);
+                        nave.printPoints(janela);
+                        nave.draw();
+                        ConIni.inimigo(cena);
+                        ConIni.inimigo2(cena);
+                        nave.updateCollisionNave();
+                        nave.updateCollisionNave2();
 
-                    explosion.update();
-                    explosion.draw();
+                        explosion.update();
+                        explosion.draw();
 
 //            ConIni.update(nave);
 //            objInimigo.draw();
-                    //janela.delay(1);
-                    janela.update();
-
-                    if (teclado.keyDown(KeyEvent.VK_ESCAPE)) {
-                        imgMenu = new GameImage(URL.sprite("telaFundoPause.png"));
-                        imgMenu.draw();
+                        //janela.delay(1);
                         janela.update();
-                        menu = 0;
-                        pause = false;
+
+                        if (teclado.keyDown(KeyEvent.VK_ESCAPE)) {
+                            imgMenu = new GameImage(URL.sprite("telaFundoPause.png"));
+                            imgMenu.draw();
+                            janela.update();
+                            menu = 0;
+                            pause = false;
+                        }
+
                     }
 
-                }
-
-                switch (menu) {
-                    case 0:
-                        imgMenu = new GameImage(URL.sprite("pauseSim.png"));
-                        break;
-                    case 1:
-                        imgMenu = new GameImage(URL.sprite("pauseNao.png"));
-                        break;
-                }
-
-                if (teclado.keyDown(KeyEvent.VK_RIGHT)) {
-                    menu = 1;
-                }
-                if (teclado.keyDown(KeyEvent.VK_LEFT)) {
-                    menu = 0;
-                }
-                if (teclado.keyDown(KeyEvent.VK_ENTER)) {
                     switch (menu) {
                         case 0:
-                            pause = true;
+                            imgMenu = new GameImage(URL.sprite("pauseSim.png"));
                             break;
                         case 1:
-                            sair = true;
-                            System.exit(0);
+                            imgMenu = new GameImage(URL.sprite("pauseNao.png"));
                             break;
-
                     }
+
+                    if (teclado.keyDown(KeyEvent.VK_RIGHT)) {
+                        menu = 1;
+                    }
+                    if (teclado.keyDown(KeyEvent.VK_LEFT)) {
+                        menu = 0;
+                    }
+                    if (teclado.keyDown(KeyEvent.VK_ENTER)) {
+                        switch (menu) {
+                            case 0:
+                                pause = true;
+                                break;
+                            case 1:
+                                sair = false;
+                                break;
+
+                        }
+                    }
+
+                    imgMenu.draw();
+                    janela.update();
+
                 }
-
-                imgMenu.draw();
-                janela.update();
-
-                if (teclado.keyDown(KeyEvent.VK_ESCAPE)) {
-                    sair = false;
-                }
-
             }
         }
     }
