@@ -41,46 +41,7 @@ public class Cenario {
         explosion = new Explosion();
         ConIni = new ControleInimigos();
 
-        while (cont > 0) { // Contagem regressiva para o inicio do game
-            try {
-                switch (cont) {
-                    case 4:
-                        cena.moveScene(nave);
-                        nave.draw();
-                        imgMenu = new GameImage(URL.sprite("telaFundoStart.png"));
-                        imgMenu.draw();
-                        imgMenu = new GameImage(URL.sprite("start3.png"));
-                        break;
-                    case 3:
-                        cena.moveScene(nave);
-                        nave.draw();
-                        imgMenu = new GameImage(URL.sprite("telaFundoStart.png"));
-                        imgMenu.draw();
-                        imgMenu = new GameImage(URL.sprite("start2.png"));
-                        break;
-                    case 2:
-                        cena.moveScene(nave);
-                        nave.draw();
-                        imgMenu = new GameImage(URL.sprite("telaFundoStart.png"));
-                        imgMenu.draw();
-                        imgMenu = new GameImage(URL.sprite("start1.png"));
-                        break;
-                    case 1:
-                        cena.moveScene(nave);
-                        nave.draw();
-                        imgMenu = new GameImage(URL.sprite("telaFundoStart.png"));
-                        imgMenu.draw();
-                        imgMenu = new GameImage(URL.sprite("startGo.png"));
-                        break;
-                }
-                imgMenu.draw();
-                janela.update();
-                Thread.sleep(500);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Cenario.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            cont--;
-        }
+        ContagemRegressiva();
 
         Som.play("song.wav");
         run();
@@ -114,7 +75,7 @@ public class Cenario {
                 janela.update();
 
                 if (teclado.keyDown(KeyEvent.VK_ESCAPE)) {
-                    imgMenu = new GameImage(URL.sprite("telaFundoStart.png"));
+                    imgMenu = new GameImage(URL.sprite("telaFundo.png"));
                     imgMenu.draw();
                     janela.update();
                     menu = 0;
@@ -155,4 +116,43 @@ public class Cenario {
         }
 
     }
+
+    private void ContagemRegressiva(){
+        while (cont > 0) { // Contagem regressiva para o inicio do game
+            try {
+                switch (cont) {
+                    case 4:
+                        LimparImgMenu();
+                        imgMenu = new GameImage(URL.sprite("start3.png"));
+                        break;
+                    case 3:
+                        LimparImgMenu();
+                        imgMenu = new GameImage(URL.sprite("start2.png"));
+                        break;
+                    case 2:
+                        LimparImgMenu();
+                        imgMenu = new GameImage(URL.sprite("start1.png"));
+                        break;
+                    case 1:
+                        LimparImgMenu();
+                        imgMenu = new GameImage(URL.sprite("startGo.png"));
+                        break;
+                }
+                imgMenu.draw();
+                janela.update();
+                Thread.sleep(500);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Cenario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            cont--;
+        }
+    }
+    
+    private void LimparImgMenu() {
+        cena.moveScene(nave);
+        nave.draw();
+        imgMenu = new GameImage(URL.sprite("telaFundo.png"));
+        imgMenu.draw();
+    }
+
 }
