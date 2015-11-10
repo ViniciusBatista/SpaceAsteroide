@@ -23,10 +23,8 @@ public class Nave extends Sprite {
     public double velocidade = 1.5;//Velocidade de movimentação da nave
     public static double points = 0;
     boolean movendo = false;//variavel para saber se movimentando
-    private int limiteTiros = 0;
-    ControleTiro tiros = new ControleTiro();
-    Scene cena;
-    ControleInimigos conInimigos = new ControleInimigos();
+    ControleTiro tiros = new ControleTiro();//Objeto da classe controle de tiros
+    Scene cena; //Objeto do tipo scene utilizado no construtor da classe nave
 
     public Nave(int x, int y, Scene cena) {
         super(URL.sprite("naveAzul.png"));
@@ -47,15 +45,14 @@ public class Nave extends Sprite {
                 if (--live == 0) {//Verifica se o live da nave é maior que 3, se não game over
                     System.exit(0);
                 }
-               // super(URL.sprite("naveAzul.png"));
                 cena.removeOverlay(asteroid);
                 new Sound(URL.audio("explosion.wav")).play();
                 astit.remove();
             }
         }
     }
-    
-        public void updateCollisionNave2() {//Método que verifica a colisão da nave com o asteroide 
+
+    public void updateCollisionNave2() {//Método que verifica a colisão da nave com o asteroide 
         ListIterator<Inimigos> astit = ControleInimigos.inimigos2.listIterator();
         while (astit.hasNext()) {
             GameObject asteroid = astit.next();
@@ -71,30 +68,24 @@ public class Nave extends Sprite {
             }
         }
     }
-
-    public void atirar(Window janela, Scene cena, Keyboard teclado, Inimigos inimigo) { //Método que adiciona o tiro
-        if (teclado.keyDown(Keyboard.SPACE_KEY) && limiteTiros < 25) { //Pergunta se o limiteTiros atingiu o limite
+    
+    public void atirar(Window janela, Scene cena, Keyboard teclado, Inimigos inimigo) {//Método que adiciona o tiro
+        if (teclado.keyDown(Keyboard.SPACE_KEY)) { //Pergunta se a tecla space esta precionada se sim atira
             tiros.adicionaTiro(x + 110, y + 35, cena);
-//            limiteTiros++; //Incrementa o limiteTiros
         }
-//        if(points > 50){ //Ver se os pontos atigiram o record e add mais tiros
-//            limiteTiros = 0;
-//        } 
-            
+
     }
 
     public void update(ControleInimigos inimigo, Nave nave) {//Chamada do método que verifica se o tiro colidiu com a nave
-        tiros.updateCollsionShort(inimigo.inimigos, nave);
-        tiros.updateCollsionShortsIni2(inimigo.inimigos2, nave);
+        tiros.updateCollsionShort(ControleInimigos.inimigos, nave);
+        tiros.updateCollsionShortsIni2(ControleInimigos.inimigos2, nave);
     }
 
     Font font = new Font("Calibri", Font.TRUETYPE_FONT, 25);
 
     public void printPoints(Window janela) {//Método que printa na tela a quantidade de pontos e de vidas do jogador.
         janela.drawText("Pontos: " + (int) points, 30, 30, Color.WHITE, font);
-      //  SalvarPontos.salvarPontos(points, "C:\\Users\\batista\\Documents\\NetBeansProjects\\space\\dist\\pontos.txt");
         janela.drawText("Live: " + (int) live, 190, 30, Color.WHITE, font);
-       // SalvarPontos.resgatar("C:\\Users\\batista\\Documents\\NetBeansProjects\\space\\dist\\pontos.txt");
     }
 
     public void mover(Window janela, Keyboard teclado) {

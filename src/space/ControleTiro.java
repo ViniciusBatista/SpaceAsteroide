@@ -39,6 +39,9 @@ public class ControleTiro {
                 if (tiro.collided(j)) {
                     it.remove();
                     Nave.points += 5;//Incrementa os pontos do jogador na partida
+//                    explosion.appendExplosion((int) j.x, (int) j.y);
+//                    explosion.draw();
+//                    explosion.update();
                     System.out.println("Pontos: " + nave.points);
                     new Sound(URL.audio("explosion.wav")).play();
                     cena.removeOverlay(j);
@@ -49,8 +52,8 @@ public class ControleTiro {
             }
         }
     }
-    
-        public void updateCollsionShortsIni2(LinkedList<Inimigos> inimigos, Nave nave) {//Metodo verifica a colisão do inimigo com o tiro
+
+    public void updateCollsionShortsIni2(LinkedList<Inimigos> inimigos, Nave nave) {//Metodo verifica a colisão do inimigo com o tiro
         this.nave = nave;
         ListIterator<Tiro> it = tiros.listIterator();
         while (it.hasNext()) {
@@ -61,11 +64,11 @@ public class ControleTiro {
                     it.remove();
                     System.out.println("Pontos: " + nave.points);
                     new Sound(URL.audio("explosion.wav")).play();
-                    if (j.energia == 0){
-                    nave.points += 8;//Incrementa os pontos do jogador na partida
-                    cena.removeOverlay(j);
-                    inimigos.remove(j);
-                    }else {
+                    if (j.energia == 0) {
+                        nave.points += 8;//Incrementa os pontos do jogador na partida
+                        cena.removeOverlay(j);
+                        inimigos.remove(j);
+                    } else {
                         j.energia--;
                     }
                     cena.removeOverlay(tiro);

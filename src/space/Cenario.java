@@ -6,9 +6,6 @@
 package space;
 
 import java.awt.event.KeyEvent;
-import static java.lang.Thread.sleep;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import jplay.*;
 
 /**
@@ -35,13 +32,9 @@ public class Cenario {
         this.janela = janela;
         cena = new Scene();
         nave = new Nave(100, 280, cena);
-
-        cena.loadFromFile(URL.scenario("cenario.scn")); //Só para testes esse não sera o cenario do jogo
-
+        cena.loadFromFile(URL.scenario("cenario.scn"));
         objInimigo = new Inimigo("asteroide1.png");
         objInimigo2 = new Inimigo2("asteroide2.png");
-        cena.loadFromFile(URL.scenario("cenario.scn"));//Só para testes esse não sera o cenario do jogo
-
         teclado = janela.getKeyboard();
         explosion = new Explosion();
         ConIni = new ControleInimigos();
@@ -70,7 +63,6 @@ public class Cenario {
 //            }
 //            cont--;
 //        }
-
         Som.play("song.wav");
         run();
     }
@@ -78,10 +70,15 @@ public class Cenario {
     public void run() {
         sair = true;
         pause = true;
+        menu = 0;
         while (sair) {
             while (pause) {
+
                 cena.moveScene(nave);
-                
+
+                ConIni.inimigo(cena);
+                ConIni.inimigo2(cena);
+
                 nave.x += cena.getXOffset();
                 nave.y += cena.getYOffset();
                 nave.mover(janela, teclado);
@@ -93,15 +90,9 @@ public class Cenario {
                 nave.updateCollisionNave();
                 nave.updateCollisionNave2();
 
-                ConIni.inimigo(cena);
-                ConIni.inimigo2(cena);
-
                 explosion.update();
                 explosion.draw();
 
-//            ConIni.update(nave);
-//            objInimigo.draw();
-                //janela.delay(1);
                 janela.update();
 
                 if (teclado.keyDown(KeyEvent.VK_ESCAPE)) {
@@ -111,7 +102,6 @@ public class Cenario {
                     menu = 0;
                     pause = false;
                 }
-
             }
 
             switch (menu) {
@@ -140,10 +130,11 @@ public class Cenario {
 
                 }
             }
-
+            
             imgMenu.draw();
             janela.update();
-
+            
         }
+
     }
 }
