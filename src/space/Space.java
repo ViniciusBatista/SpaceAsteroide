@@ -21,48 +21,48 @@ public class Space {
         Window janela = new Window(1280, 720);
         GameImage imgMenu;
         Keyboard teclado = janela.getKeyboard();
-        Cenario cenario;
-        boolean sair = true;
+        boolean sair = true; //Variavel para finalizar o jogo
         int menu = 1;
         imgMenu = new GameImage(URL.sprite("menuPlayer.png"));
 
         while (sair) {
-            switch (menu) {
+
+            teclado.addKey(KeyEvent.VK_DOWN); //Adiciono o botao da seta de baixo para ele virar um KeyPress
+            teclado.addKey(KeyEvent.VK_UP); //Adiciono o botao da seta de cima para ele virar um KeyPress
+            imgMenu.draw();
+            janela.update();
+
+            switch (menu) { //Determinar em qual menu está e colocar a imagem referente a ele
                 case 1:
-                    imgMenu = new GameImage(URL.sprite("menuPlayer.png"));
+                    imgMenu = new GameImage(URL.sprite("menuPlayer.png")); //Imagem do Menu 1 Player
                     break;
                 case 2:
-                    imgMenu = new GameImage(URL.sprite("menuMulti.png"));
+                    imgMenu = new GameImage(URL.sprite("menuMulti.png")); //Imagem do Menu Multiplayer
                     break;
                 case 3:
-                    imgMenu = new GameImage(URL.sprite("menuRanking.png"));
+                    imgMenu = new GameImage(URL.sprite("menuRanking.png")); //Imagem do Menu Ranking
                     break;
                 case 4:
-                    imgMenu = new GameImage(URL.sprite("menuSair.png"));
+                    imgMenu = new GameImage(URL.sprite("menuSair.png")); //Imagem do Menu Sair
                     break;
             }
 
-            if (teclado.keyDown(KeyEvent.VK_DOWN)) {
+            if (teclado.keyDown(KeyEvent.VK_DOWN)) { //Quando o jogador apertar para baixo é feito a troca para menu referente
                 if (menu == 1) {
-//                    teclado.removeKey(KeyEvent.VK_DOWN);
                     menu = 2;
                 } else {
                     if (menu == 2) {
-//                        teclado.removeKey(KeyEvent.VK_ DOWN);
                         menu = 3;
                     } else {
                         if (menu == 3) {
-//                            teclado.removeKey(KeyEvent.VK_ DOWN);
                             menu = 4;
                         }
                     }
                 }
-            } else {
-                teclado.addKey(KeyEvent.VK_DOWN);
             }
 
-            if (teclado.keyDown(KeyEvent.VK_UP)) {
-                if (menu == 4) {
+            if (teclado.keyDown(KeyEvent.VK_UP)) { //Quando o jogador apertar para cima é feito a troca para o menu referente
+                if (menu == 4) {;
                     menu = 3;
                 } else {
                     if (menu == 3) {
@@ -73,20 +73,22 @@ public class Space {
                         }
                     }
                 }
-            }else{
-                teclado.addKey(KeyEvent.VK_UP);
             }
 
-            if (teclado.keyDown(KeyEvent.VK_ENTER)) {
-                switch (menu) {
+            if (teclado.keyDown(KeyEvent.VK_ENTER)) { //Determinar quando o jogador apertar enter
+                switch (menu) { //Verifica em qual menu está, e excuta uma função correspondente
                     case 1:
-                        cenario = new Cenario(janela);
+                        teclado.addKey(KeyEvent.VK_DOWN, KeyEvent.KEY_RELEASED); //Coloca o botao para voltar a ser KeyReleased
+                        teclado.addKey(KeyEvent.VK_UP, KeyEvent.KEY_RELEASED); //Coloca o botao para voltar a ser KeyReleased
+                        Cenario cenario = new Cenario(janela); //Cria o cenario do jogo
                         break;
                     case 2:
                         //progresso
+                        System.out.println("Menu Multi");
                         break;
                     case 3:
                         //progreso
+                        System.out.println("Menu Ranking");
                         break;
                     case 4:
                         sair = false;
@@ -94,9 +96,6 @@ public class Space {
                         break;
                 }
             }
-
-            imgMenu.draw();
-            janela.update();
 
         }
 

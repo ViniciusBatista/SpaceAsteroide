@@ -5,12 +5,13 @@
  */
 package space;
 
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.*;
+import java.awt.event.KeyEvent;
 import java.util.ListIterator;
 import jplay.*;
+import jplay.Window;
 
-/**
+/*
  *
  * @author batista
  *
@@ -71,7 +72,7 @@ public class Nave extends Sprite {
         }
     }
 
-    public void atirar(Window janela, Scene cena, Keyboard teclado, Inimigos inimigo) {//Método que adiciona o tiro
+    public void atirar(Window janela, Scene cena, Keyboard teclado, Inimigos inimigo) { //Método que adiciona o tiro
         if (teclado.keyDown(Keyboard.SPACE_KEY) && limiteTiros < 25) { //Pergunta se o limiteTiros atingiu o limite
             tiros.adicionaTiro(x + 110, y + 35, cena);
 //            limiteTiros++; //Incrementa o limiteTiros
@@ -97,22 +98,22 @@ public class Nave extends Sprite {
     }
 
     public void mover(Window janela, Keyboard teclado) {
-        if (teclado.keyDown(Keyboard.LEFT_KEY)) {
+        if (teclado.keyDown(KeyEvent.VK_LEFT)) {
             if (this.x > 0) {
                 this.x -= velocidade;
             }
             movendo = true;
-        } else if (teclado.keyDown(Keyboard.RIGHT_KEY)) {
+        } else if (teclado.keyDown(KeyEvent.VK_RIGHT)) {
             if (this.x < janela.getWidth() - 800) {
                 this.x += velocidade;
             }
             movendo = true;
-        } else if (teclado.keyDown(Keyboard.UP_KEY)) {
+        } else if (teclado.keyDown(KeyEvent.VK_UP)) {
             if (this.y > 0) {
                 this.y -= velocidade;
             }
             movendo = true;
-        } else if (teclado.keyDown(Keyboard.DOWN_KEY)) {
+        } else if (teclado.keyDown(KeyEvent.VK_DOWN)) {
             if (this.y < janela.getHeight() - 110) {
                 this.y += velocidade;
             }
