@@ -21,7 +21,7 @@ public class Space {
         Window janela = new Window(1280, 720);
         GameImage imgMenu;
         Keyboard teclado = janela.getKeyboard();
-        MenuDificuldades menuDificuldade;
+        Cenario cenario;
         boolean sair = true;
         int menu = 1;
         imgMenu = new GameImage(URL.sprite("menuPlayer.png"));
@@ -35,6 +35,9 @@ public class Space {
                     imgMenu = new GameImage(URL.sprite("menuMulti.png"));
                     break;
                 case 3:
+                    imgMenu = new GameImage(URL.sprite("menuRanking.png"));
+                    break;
+                case 4:
                     imgMenu = new GameImage(URL.sprite("menuSair.png"));
                     break;
             }
@@ -44,17 +47,25 @@ public class Space {
                     menu = 2;
                 } else {
                     if (menu == 2) {
-                        menu = 1;
+                        menu = 3;
+                    }else{
+                        if(menu == 3){
+                            menu = 4;
+                        }
                     }
                 }
             }
 
             if (teclado.keyDown(KeyEvent.VK_UP)) {
-                if (menu == 3) {
-                    menu = 2;
+                if (menu == 4) {
+                    menu = 3;
                 } else {
-                    if (menu == 2) {
-                        menu = 1;
+                    if (menu == 3) {
+                        menu = 2;
+                    }else{
+                        if(menu == 2){
+                            menu = 1;
+                        }
                     }
                 }
             }
@@ -62,12 +73,15 @@ public class Space {
             if (teclado.keyDown(KeyEvent.VK_ENTER)) {
                 switch (menu) {
                     case 1:
-                        menuDificuldade = new MenuDificuldades(janela);
+                        cenario = new Cenario(janela);
                         break;
                     case 2:
                         //progresso
                         break;
                     case 3:
+                        //progreso
+                        break;
+                    case 4:
                         sair = false;
                         janela.exit();
                         break;

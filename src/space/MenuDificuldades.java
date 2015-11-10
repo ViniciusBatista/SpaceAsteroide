@@ -11,7 +11,7 @@ public class MenuDificuldades {
         private GameImage imgMenu;
         private boolean loop = true;
         private int menu = 1;
-        public static int dificuldade;
+//        public static int dificuldade;
 
     public MenuDificuldades(Window janela) {
         this.janela = janela;
@@ -57,15 +57,16 @@ public class MenuDificuldades {
             if (teclado.keyDown(KeyEvent.VK_ENTER)) {
                 switch (menu) {
                     case 1:
-                        dificuldade = 1;
+//                        dificuldade = 1;
                         cenario = new Cenario(janela);
                         break;
                     case 2:
-                        dificuldade = 2;
+//                        dificuldade = 2;
+//                        dificuldade = 2;
                         cenario = new Cenario(janela);
                         break;
                     case 3:
-                        dificuldade = 3;
+//                        dificuldade = 3;
                         cenario = new Cenario(janela);
                         break;
                 }

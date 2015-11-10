@@ -20,7 +20,7 @@ public class Nave extends Sprite {
     public double live;//Vida quando a variavel resistencia zera ela é decrementada na classe controleInimigo
     public int resistencia;//Essa variavel decrementa 1 a cada asteroide que ele colide
     public double velocidade = 1.5;//Velocidade de movimentação da nave
-    public double points = 0;
+    public static double points = 0;
     boolean movendo = false;//variavel para saber se movimentando
     private int limiteTiros = 0;
     ControleTiro tiros = new ControleTiro();
@@ -46,10 +46,7 @@ public class Nave extends Sprite {
                 if (--live == 0) {//Verifica se o live da nave é maior que 3, se não game over
                     System.exit(0);
                 }
-<<<<<<< HEAD
-=======
                // super(URL.sprite("naveAzul.png"));
->>>>>>> 2e8b5f39e68659b2dc68993eeb47ffbfd465178f
                 cena.removeOverlay(asteroid);
                 new Sound(URL.audio("explosion.wav")).play();
                 astit.remove();

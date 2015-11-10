@@ -22,6 +22,7 @@ public class ControleInimigos {
     public static Inimigo2 objIni2;
 
     private Scene cena;
+    private int num = 0, num2 = 0;
 
     public void adicionaInimigo(Scene cena) {
         objIni = new Inimigo("asteroide1.png");
@@ -39,7 +40,17 @@ public class ControleInimigos {
 
     public void inimigo(Scene cena) {//Sorteia a frequencia em que os asteroides serão adicionados
         Random random = new Random();
-        int num = random.nextInt(130);
+        if (Nave.points < 200) {
+            num = random.nextInt(130);
+        } else {
+            if (Nave.points > 200 && Nave.points < 500) {
+                num = random.nextInt(80);
+            } else {
+                if (Nave.points > 500) {
+                    num = random.nextInt(40);
+                }
+            }
+        }
         if (num == 10) {
             adicionaInimigo(cena);
         }
@@ -48,8 +59,14 @@ public class ControleInimigos {
 
     public void inimigo2(Scene cena) {//Sorteia a frequencia em que os asteroides serão adicionados
         Random random = new Random();
-        int num = random.nextInt(1000);
-        if (num == 10) {
+//        if (Nave.points < 1000) {
+        num2 = random.nextInt(1000);
+//        } else {
+//            if (Nave.points > 1000 && Nave.points < 2000) {
+//                num2 = random.nextInt(500);
+//            }
+//        }
+        if (num2 == 10) {
             adicionaInimigo2(cena);
         }
         run2();
