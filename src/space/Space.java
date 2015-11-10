@@ -44,16 +44,21 @@ public class Space {
 
             if (teclado.keyDown(KeyEvent.VK_DOWN)) {
                 if (menu == 1) {
+//                    teclado.removeKey(KeyEvent.VK_DOWN);
                     menu = 2;
                 } else {
                     if (menu == 2) {
+//                        teclado.removeKey(KeyEvent.VK_ DOWN);
                         menu = 3;
-                    }else{
-                        if(menu == 3){
+                    } else {
+                        if (menu == 3) {
+//                            teclado.removeKey(KeyEvent.VK_ DOWN);
                             menu = 4;
                         }
                     }
                 }
+            } else {
+                teclado.addKey(KeyEvent.VK_DOWN);
             }
 
             if (teclado.keyDown(KeyEvent.VK_UP)) {
@@ -62,12 +67,14 @@ public class Space {
                 } else {
                     if (menu == 3) {
                         menu = 2;
-                    }else{
-                        if(menu == 2){
+                    } else {
+                        if (menu == 2) {
                             menu = 1;
                         }
                     }
                 }
+            }else{
+                teclado.addKey(KeyEvent.VK_UP);
             }
 
             if (teclado.keyDown(KeyEvent.VK_ENTER)) {
