@@ -140,7 +140,7 @@ public class Cenario {
                 }
                 imgMenu.draw();
                 janela.update();
-                Thread.sleep(500);
+                Thread.sleep(500); //Tempo em espera
             } catch (InterruptedException ex) {
                 Logger.getLogger(Cenario.class.getName()).log(Level.SEVERE, null, ex);
             }
