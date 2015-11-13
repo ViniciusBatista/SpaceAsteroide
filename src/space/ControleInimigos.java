@@ -81,7 +81,11 @@ public class ControleInimigos {
                 break;
             }
         }
+    }
 
+    public void deleteAsteroide() {
+        inimigos.removeAll(inimigos);
+        inimigos2.removeAll(inimigos2);
     }
 
     public void run2() {

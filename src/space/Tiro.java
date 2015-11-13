@@ -18,8 +18,6 @@ public class Tiro extends Sprite{
     protected boolean movendo = false;
     protected int direcao = 3;
 
- 
-    
     public Tiro(Double x, Double y) {
         super(URL.sprite("tiro_fogo2.png"), 4);
         this.x = x;
