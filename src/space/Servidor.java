@@ -27,8 +27,6 @@ public class Servidor {
             socketServidor = new ServerSocket(8888);
 //            while (loop) {  
                 System.out.println("Aguardando conexao....");
-                System.out.println(socketServidor.getLocalSocketAddress());
-                System.out.println(socketServidor.getLocalPort());
                 Socket socketCliente = socketServidor.accept(); //Fica aguardando conexao com o cliente
 ////                System.out.println("IP: " + socketCliente.getInetAddress().getHostAddress() + ":" + socketCliente.getPort());
 ////                System.out.println("HostName: " + socketCliente.getInetAddress().getHostName());
