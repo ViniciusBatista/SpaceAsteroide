@@ -82,7 +82,7 @@ public class Conexao {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) {//Testes
         conecte();
         execute("Vinicius", 2);
     }

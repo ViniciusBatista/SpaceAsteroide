@@ -7,9 +7,9 @@ import jplay.Scene;
 import jplay.Window;
 import static space.Nave.points;
 
-public class NavePayer1 extends Nave {
+public class NavePlayer1 extends Nave {
 
-    public NavePayer1(int x, int y, Scene cena) {
+    public NavePlayer1(int x, int y, Scene cena) {
         super(x, y, cena);
     }
 
