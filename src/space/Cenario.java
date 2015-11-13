@@ -105,6 +105,7 @@ public class Cenario {
                         break;
                     case 1:
                         sair = false;
+                        ConIni.deleteAsteroide();
                         break;
 
                 }
