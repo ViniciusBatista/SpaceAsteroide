@@ -26,8 +26,8 @@ public class Nave extends Sprite {
     ControleTiro tiros = new ControleTiro();//Objeto da classe controle de tiros
     Scene cena; //Objeto do tipo scene utilizado no construtor da classe nave
 
-    public Nave(int x, int y, Scene cena) {
-        super(URL.sprite("naveAzul.png"));
+    public Nave(int x, int y, Scene cena, String tipoNave) {
+        super(URL.sprite(tipoNave));
         this.x = x;
         this.y = y;
         this.setTotalDuration(2000);

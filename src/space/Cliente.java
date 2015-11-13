@@ -12,7 +12,7 @@ public class Cliente {
     boolean loopCliente = true, loop = true;
 //    Window janela;
     Keyboard teclado;
-    Nave nave;
+    NavePlayer2 naveCliente;
 
     public Cliente(Keyboard teclado) {
 //        this.janela = janela;
@@ -29,17 +29,17 @@ public class Cliente {
 
 //                while (loopCliente) {
                 while (true) {
-                    nave = new Nave(100, 280, Cenario.cena);
-                    nave.x += Cenario.cena.getXOffset();
-                    nave.y += Cenario.cena.getYOffset();
-                    nave.mover(Servidor.janela, teclado);
-                    nave.atirar(Servidor.janela, Cenario.cena, teclado, Cenario.objInimigo);
-                    nave.atirar(Servidor.janela, Cenario.cena, teclado, Cenario.objInimigo2);
-                    nave.update(Cenario.ConIni, nave);
-                    nave.printPoints(Servidor.janela);
-                    nave.draw();
-                    nave.updateCollisionNaveAsteroid1();
-                    nave.updateCollisionNaveAsteroid2();
+                    naveCliente = new NavePlayer2(100, 280, Cenario.cena);
+                    naveCliente.x += Cenario.cena.getXOffset();
+                    naveCliente.y += Cenario.cena.getYOffset();
+                    naveCliente.mover(Servidor.janela, teclado);
+                    naveCliente.atirar(Servidor.janela, Cenario.cena, teclado, Cenario.objInimigo);
+                    naveCliente.atirar(Servidor.janela, Cenario.cena, teclado, Cenario.objInimigo2);
+                    naveCliente.update(Cenario.ConIni, naveCliente);
+                    naveCliente.printPoints(Servidor.janela);
+                    naveCliente.draw();
+                    naveCliente.updateCollisionNaveAsteroid1();
+                    naveCliente.updateCollisionNaveAsteroid2();
                     Cenario.cena.draw();
                     Servidor.janela.update();
                 }

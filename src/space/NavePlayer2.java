@@ -10,7 +10,7 @@ import static space.Nave.points;
 public class NavePlayer2 extends Nave{
 
     public NavePlayer2(int x, int y, Scene cena) {
-        super(x, y, cena);
+        super(x, y, cena, "naveVermelha.png");
     }
 
     @Override
