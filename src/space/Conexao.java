@@ -9,7 +9,8 @@ import java.sql.*;
 import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -42,7 +43,7 @@ public class Conexao {
     }
 
     public static void execute(String nome, int points) {//método que inseri os registros na tabela do banco
-        String sql = "insert into ranking(player, points) values ('"+nome+"', "+points+")";
+        String sql = "insert into ranking(player, points) values ('" + nome + "', " + points + ")";
         try {
             PreparedStatement stmt = con.prepareCall(sql);
             Statement st = con.createStatement();
@@ -62,11 +63,28 @@ public class Conexao {
         }
         return null;
     }
-    
+
+    public static void consulta() {
+        List<Player> jogadores = new ArrayList();
+        String SELECT = "select * from ranking;";
+        try {
+            conecte();
+            ResultSet rs = executeQuery(SELECT);
+            while (rs.next()) {
+                Player player =  new Player();      
+                
+                
+                player.setNome(rs.getString("player"));
+                player.setPoints(rs.getInt("points"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         conecte();
         execute("Vinicius", 2);
     }
-    
 
 }
