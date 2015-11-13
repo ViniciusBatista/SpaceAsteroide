@@ -35,7 +35,7 @@ public class Nave extends Sprite {
         live = 3;
     }
 
-    public void updateCollisionNave() {//Método que verifica a colisão da nave com o asteroide 
+    public void updateCollisionNaveAsteroid1() {//Método que verifica a colisão da nave com o asteroide 
         ListIterator<Inimigos> astit = ControleInimigos.inimigos.listIterator();
         while (astit.hasNext()) {
             GameObject asteroid = astit.next();
@@ -52,7 +52,7 @@ public class Nave extends Sprite {
         }
     }
 
-    public void updateCollisionNave2() {//Método que verifica a colisão da nave com o asteroide 
+    public void updateCollisionNaveAsteroid2() {//Método que verifica a colisão da nave com o asteroide 
         ListIterator<Inimigos> astit = ControleInimigos.inimigos2.listIterator();
         while (astit.hasNext()) {
             GameObject asteroid = astit.next();

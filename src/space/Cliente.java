@@ -38,8 +38,8 @@ public class Cliente {
                     nave.update(Cenario.ConIni, nave);
                     nave.printPoints(Servidor.janela);
                     nave.draw();
-                    nave.updateCollisionNave();
-                    nave.updateCollisionNave2();
+                    nave.updateCollisionNaveAsteroid1();
+                    nave.updateCollisionNaveAsteroid2();
                     Cenario.cena.draw();
                     Servidor.janela.update();
                 }
