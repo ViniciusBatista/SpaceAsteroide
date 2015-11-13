@@ -1,15 +1,11 @@
 package space;
 
-<<<<<<< HEAD
-public class NavePayer1 extends Nave{
-=======
 import java.awt.Color;
 import java.awt.Font;
 import jplay.Keyboard;
 import jplay.Scene;
 import jplay.Window;
 import static space.Nave.points;
->>>>>>> ff6300bf7fc8ea977808345055e1f80ba59afefb
 
 public class NavePayer1 extends Nave {
 
