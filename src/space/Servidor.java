@@ -1,12 +1,7 @@
 package space;
 
-import java.awt.event.KeyEvent;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
 import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.Calendar;
 import java.util.Scanner;
 import jplay.Keyboard;
