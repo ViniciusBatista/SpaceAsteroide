@@ -1,13 +1,11 @@
 package space;
 
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
 import jplay.Keyboard;
-import jplay.Window;
 
-public class Cliente {
+public class newCliente {
 
     Scanner scan = new Scanner(System.in);
     String pergunta, resposta;
@@ -16,7 +14,7 @@ public class Cliente {
     Keyboard teclado;
     Nave nave;
 
-    public Cliente(Keyboard teclado) {
+    public newCliente(Keyboard teclado) {
 //        this.janela = janela;
         this.teclado = teclado;
         while (loop) {
@@ -42,6 +40,8 @@ public class Cliente {
                     nave.draw();
                     nave.updateCollisionNave();
                     nave.updateCollisionNave2();
+                    
+                    //teste
 
 //                    System.out.println("Digite sua Pergunta: ");
 //                    pergunta = scan.next();
@@ -67,9 +67,9 @@ public class Cliente {
                 ex.printStackTrace();
             }
 
-            if (teclado.keyDown(KeyEvent.VK_ESCAPE)) {
-                loop = false;
-            }
+//            if (teclado.keyDown(KeyEvent.VK_ESCAPE)) {
+//                loop = false;
+//            }
 //            System.out.println("Deseja conectar: [1]Sim | [0]Não");
 //            loop = scan.nextInt();
 
