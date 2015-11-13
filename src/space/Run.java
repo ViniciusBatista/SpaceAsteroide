@@ -16,7 +16,8 @@ public class Run {
     private boolean sair = true; //Variavel para finalizar o jogo
     private int menu = 1; //Variavel para identificar e mostrar cada menu
     private Servidor sever;
-
+    private Cliente cliente;
+    
     public Run(Window janela) { //Metodo run(); Para inicar o jogo
         this.janela = janela;
         teclado = janela.getKeyboard();
@@ -91,7 +92,7 @@ public class Run {
                         }else{
                             if(op.equals("2")){
                                 System.out.println("Cliente");
-                                Cliente cliente = new Cliente(teclado);
+                                cliente = new Cliente(teclado);
                             }
                         }
                         break;

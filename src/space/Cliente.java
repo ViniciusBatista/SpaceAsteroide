@@ -23,13 +23,13 @@ public class Cliente {
 //
 //            System.out.println("Digite o IP");
 //            String ip = scan.next();
-
             try {
                 Socket serve = new Socket("localhost", 8888);
                 System.out.println("Cliente se conectou ao servidor.");
 
 //                while (loopCliente) {
-
+                while (true) {
+                    nave = new Nave(100, 280, Cenario.cena);
                     nave.x += Cenario.cena.getXOffset();
                     nave.y += Cenario.cena.getYOffset();
                     nave.mover(Servidor.janela, teclado);
@@ -40,9 +40,11 @@ public class Cliente {
                     nave.draw();
                     nave.updateCollisionNave();
                     nave.updateCollisionNave2();
-                    
-                    //teste
+                    Cenario.cena.draw();
+                    Servidor.janela.update();
+                }
 
+                //teste
 //                    System.out.println("Digite sua Pergunta: ");
 //                    pergunta = scan.next();
 //                    System.out.println(pergunta);
@@ -62,7 +64,6 @@ public class Cliente {
 //                        loopCliente = false;
 //                    }
 //                }
-
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
@@ -72,7 +73,6 @@ public class Cliente {
 //            }
 //            System.out.println("Deseja conectar: [1]Sim | [0]Não");
 //            loop = scan.nextInt();
-
         }
 
     }

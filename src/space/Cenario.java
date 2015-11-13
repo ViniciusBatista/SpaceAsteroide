@@ -104,6 +104,7 @@ public class Cenario {
                         pause = true;
                         break;
                     case 1:
+                        Som.stop();
                         sair = false;
                         break;
 

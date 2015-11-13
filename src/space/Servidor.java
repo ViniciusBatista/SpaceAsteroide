@@ -2,6 +2,7 @@ package space;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.Calendar;
 import java.util.Scanner;
 import jplay.Keyboard;
@@ -20,21 +21,21 @@ public class Servidor {
     ServerSocket socketServidor;
 
     public Servidor(Window janela) {
-       this.janela = janela;
+       Servidor.janela = janela;
 //       this.teclado = teclado;
         try {
             socketServidor = new ServerSocket(8888);
 //            while (loop) {  
-//                System.out.println("Aguardando conexao....");
-//                Socket socketCliente = socketServidor.accept();
+                System.out.println("Aguardando conexao....");
+                Socket socketCliente = socketServidor.accept();
 ////                System.out.println("IP: " + socketCliente.getInetAddress().getHostAddress() + ":" + socketCliente.getPort());
 ////                System.out.println("HostName: " + socketCliente.getInetAddress().getHostName());
 ////                System.out.println("HostName: " + socketCliente.getInetAddress().getCanonicalHostName());
 ////                System.out.print("\n");
-//                System.out.println("Cliente conectou-se.");
+                System.out.println("Cliente conectou-se.");
 //                
-//                cenario = new Cenario(janela);
-//                iniciar = new Run(janela);
+                cenario = new Cenario(janela);
+                iniciar = new Run(janela);
 ////                iniciar = new Run();
 ////                iniciar.run();
 //                while (loopSever) {
