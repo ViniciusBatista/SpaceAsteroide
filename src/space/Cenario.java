@@ -17,12 +17,12 @@ import jplay.*;
 public class Cenario {
 
     private final Window janela;
-    private final Scene cena;
+    public static Scene cena;
     private final Nave nave;
-    private Inimigo objInimigo;
-    private Inimigo2 objInimigo2;
+    public static Inimigo objInimigo;
+    public static Inimigo2 objInimigo2;
     private final Keyboard teclado;
-    private final ControleInimigos ConIni;
+    public static  ControleInimigos ConIni;
     private Explosion explosion;
 
     private GameImage imgMenu;

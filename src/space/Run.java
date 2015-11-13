@@ -1,33 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package space;
 
 import java.awt.event.KeyEvent;
-import jplay.*;
+import javax.swing.JOptionPane;
+import jplay.GameImage;
+import jplay.Keyboard;
+import jplay.URL;
+import jplay.Window;
 
-/**
- *
- * @author batista
- */
-public class Space {
+public class Run {
+    //Inicializando as variaveis
+    private Window janela;
+    private Keyboard teclado;
+    private Cenario cenario;
+    private GameImage imgMenu; 
+    private boolean sair = true; //Variavel para finalizar o jogo
+    private int menu = 1; //Variavel para identificar e mostrar cada menu
+    private Servidor sever;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        Window janela = new Window(1280, 720);
-        Keyboard teclado = janela.getKeyboard();
-        GameImage imgMenu;
-        Cenario cenario;
-        imgMenu = new GameImage(URL.sprite("menuPlayer.png"));
-        boolean sair = true; //Variavel para finalizar o jogo
-        int menu = 1;
+    public Run(Window janela) { //Metodo run(); Para inicar o jogo
+        this.janela = janela;
+        teclado = janela.getKeyboard();
+        imgMenu = new GameImage(URL.sprite("menuPlayer.png")); //Coloca a imagem do menu inicial (Para comecar ja com o menu)
 
-        while (sair) {
-
+        while (sair) { //While para o jogo ficar sempre rodando
+            Som.stop(); //Sempre q entrar no menu parar o som
             teclado.addKey(KeyEvent.VK_DOWN); //Adiciono o botao da seta de baixo para ele virar um KeyPress
             teclado.addKey(KeyEvent.VK_UP); //Adiciono o botao da seta de cima para ele virar um KeyPress
             imgMenu.draw();
@@ -78,20 +74,32 @@ public class Space {
 
             if (teclado.keyDown(KeyEvent.VK_ENTER)) { //Determinar quando o jogador apertar enter
                 switch (menu) { //Verifica em qual menu está, e excuta uma função correspondente
-                    case 1:
+                    case 1: //1 Player
                         teclado.addKey(KeyEvent.VK_DOWN, KeyEvent.KEY_RELEASED); //Coloca o botao para voltar a ser KeyReleased
                         teclado.addKey(KeyEvent.VK_UP, KeyEvent.KEY_RELEASED); //Coloca o botao para voltar a ser KeyReleased
                         cenario = new Cenario(janela); //Cria o cenario do jogo
                         break;
-                    case 2:
+                    case 2: //MultiPlayer
                         //progresso
+                        teclado.addKey(KeyEvent.VK_DOWN, KeyEvent.KEY_RELEASED); //Coloca o botao para voltar a ser KeyReleased
+                        teclado.addKey(KeyEvent.VK_UP, KeyEvent.KEY_RELEASED); //Coloca o botao para voltar a ser KeyReleased
                         System.out.println("Menu Multi");
+                        String op = JOptionPane.showInputDialog(null, "Server[1] ou cliente[2]");
+                        if(op.equals("1")){
+                            System.out.println("Sever");
+                            sever = new Servidor(janela);
+                        }else{
+                            if(op.equals("2")){
+                                System.out.println("Cliente");
+                                Cliente cliente = new Cliente(teclado);
+                            }
+                        }
                         break;
-                    case 3:
+                    case 3: //Ranking
                         //progreso
                         System.out.println("Menu Ranking");
                         break;
-                    case 4:
+                    case 4: //Sair
                         sair = false;
                         janela.exit();
                         break;
@@ -99,7 +107,6 @@ public class Space {
             }
 
         }
-
     }
 
 }
