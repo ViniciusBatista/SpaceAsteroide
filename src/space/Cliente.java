@@ -29,7 +29,23 @@ public class Cliente {
 
 //                while (loopCliente) {
                 while (true) {
+<<<<<<< HEAD
                     
+=======
+                    nave = new Nave(100, 280, Cenario.cena);
+                    nave.x += Cenario.cena.getXOffset();
+                    nave.y += Cenario.cena.getYOffset();
+                    nave.mover(Servidor.janela, teclado);
+                    nave.atirar(Servidor.janela, Cenario.cena, teclado, Cenario.objInimigo);
+                    nave.atirar(Servidor.janela, Cenario.cena, teclado, Cenario.objInimigo2);
+                    nave.update(Cenario.ConIni, nave);
+                    nave.printPoints(Servidor.janela);
+                    nave.draw();
+                    nave.updateCollisionNaveAsteroid1();
+                    nave.updateCollisionNaveAsteroid2();
+                    Cenario.cena.draw();
+                    Servidor.janela.update();
+>>>>>>> ff6300bf7fc8ea977808345055e1f80ba59afefb
                 }
 
                 //teste

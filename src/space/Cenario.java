@@ -66,8 +66,8 @@ public class Cenario {
                 nave.update(ConIni, nave);
                 nave.printPoints(janela);
                 nave.draw();
-                nave.updateCollisionNave();
-                nave.updateCollisionNave2();
+                nave.updateCollisionNaveAsteroid1();
+                nave.updateCollisionNaveAsteroid2();
 
                 explosion.update();
                 explosion.draw();
