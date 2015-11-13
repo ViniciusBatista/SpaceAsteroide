@@ -91,7 +91,7 @@ public class Run {
                         }else{
                             if(op.equals("2")){
                                 System.out.println("Cliente");
-                                newCliente cliente = new newCliente(teclado);
+                                Cliente cliente = new Cliente(teclado);
                             }
                         }
                         break;

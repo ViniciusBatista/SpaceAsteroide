@@ -5,7 +5,7 @@ import java.net.Socket;
 import java.util.Scanner;
 import jplay.Keyboard;
 
-public class newCliente {
+public class Cliente {
 
     Scanner scan = new Scanner(System.in);
     String pergunta, resposta;
@@ -14,7 +14,7 @@ public class newCliente {
     Keyboard teclado;
     Nave nave;
 
-    public newCliente(Keyboard teclado) {
+    public Cliente(Keyboard teclado) {
 //        this.janela = janela;
         this.teclado = teclado;
         while (loop) {
