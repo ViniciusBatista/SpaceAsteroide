@@ -2,7 +2,6 @@ package space;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.KeyEvent;
 import jplay.*;
 
 import static space.Nave.points;

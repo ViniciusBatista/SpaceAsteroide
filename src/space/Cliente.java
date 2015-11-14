@@ -24,12 +24,12 @@ public class Cliente {
 //            System.out.println("Digite o IP");
 //            String ip = scan.next();
             try {
-                Socket serve = new Socket("localhost", 8888);
+                Socket serve = new Socket("192.168.0.111", 8888);
                 System.out.println("Cliente se conectou ao servidor.");
 
 //                while (loopCliente) {
                 while (true) {
-                    naveCliente = new NavePlayer2(100, 280, Cenario.cena);
+                    naveCliente = new NavePlayer2(100, 400, Cenario.cena, "naveVermelha.png");
                     naveCliente.x += Cenario.cena.getXOffset();
                     naveCliente.y += Cenario.cena.getYOffset();
                     naveCliente.mover(Servidor.janela, teclado);
