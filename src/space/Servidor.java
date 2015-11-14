@@ -10,7 +10,7 @@ import jplay.Window;
 
 public class Servidor {
 
-    public static Window janela;
+    private final Window janela;
     Keyboard teclado;
     Cenario cenario;
     Run iniciar;
@@ -21,7 +21,7 @@ public class Servidor {
     ServerSocket socketServidor;
 
     public Servidor(Window janela) {
-        Servidor.janela = janela;
+        this.janela = janela;
 //       this.teclado = teclado;
         try {
             socketServidor = new ServerSocket(8888);

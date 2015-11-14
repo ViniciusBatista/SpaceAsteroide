@@ -14,13 +14,13 @@ public class NavePlayer2 extends Nave {
     }
 
     @Override
-    public void updateCollisionNaveAsteroid1() {//Método que verifica a colisão da nave com o asteroide 
-        super.updateCollisionNaveAsteroid1();
+    public boolean updateCollisionNaveAsteroid1() {//Método que verifica a colisão da nave com o asteroide 
+        return super.updateCollisionNaveAsteroid1();
     }
 
     @Override
-    public void updateCollisionNaveAsteroid2() {//Método que verifica a colisão da nave com o asteroide 
-        super.updateCollisionNaveAsteroid2();
+    public boolean updateCollisionNaveAsteroid2() {//Método que verifica a colisão da nave com o asteroide 
+        return super.updateCollisionNaveAsteroid2();
     }
 
     @Override

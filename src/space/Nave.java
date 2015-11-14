@@ -35,7 +35,7 @@ public class Nave extends Sprite {
         live = 3;
     }
 
-    public void updateCollisionNaveAsteroid1() {//Método que verifica a colisão da nave com o asteroide 
+    public boolean updateCollisionNaveAsteroid1() {//Método que verifica a colisão da nave com o asteroide 
         ListIterator<Inimigos> astit = ControleInimigos.inimigos.listIterator();
         while (astit.hasNext()) {
             GameObject asteroid = astit.next();
@@ -43,13 +43,14 @@ public class Nave extends Sprite {
                 System.out.println("Colisão da nave com o asteroide");
                 System.out.println("Live" + live);
                 if (--live == 0) {//Verifica se o live da nave é maior que 3, se não game over
-                    System.exit(0);
+                    return true;
                 }
                 cena.removeOverlay(asteroid);
                 new Sound(URL.audio("explosion.wav")).play();
                 astit.remove();
             }
         }
+        return false;
     }
     
     public void restart(){
@@ -57,7 +58,7 @@ public class Nave extends Sprite {
         this.points = 0;
     }
 
-    public void updateCollisionNaveAsteroid2() {//Método que verifica a colisão da nave com o asteroide 
+    public boolean updateCollisionNaveAsteroid2() {//Método que verifica a colisão da nave com o asteroide 
         ListIterator<Inimigos> astit = ControleInimigos.inimigos2.listIterator();
         while (astit.hasNext()) {
             GameObject asteroid = astit.next();
@@ -65,13 +66,14 @@ public class Nave extends Sprite {
                 System.out.println("Colisão da nave com o asteroide");
                 System.out.println("Live" + live);
                 if (--live == 0) {//Verifica se o live da nave é maior que 3, se não game over
-                    System.exit(0);
+                    return  true;
                 }
                 cena.removeOverlay(asteroid);
                 new Sound(URL.audio("explosion.wav")).play();
                 astit.remove();
             }
         }
+        return  false;
     }
     
     public void atirar(Window janela, Scene cena, Keyboard teclado, Inimigos inimigo) {//Método que adiciona o tiro
