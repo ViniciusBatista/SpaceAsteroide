@@ -28,20 +28,36 @@ public class Cliente {
                 System.out.println("Cliente se conectou ao servidor.");
 
 //                while (loopCliente) {
+                naveCliente = new NavePlayer2(100, 280, Cenario.cena, "naveVermelha.png");
                 while (true) {
-                    naveCliente = new NavePlayer2(100, 400, Cenario.cena, "naveVermelha.png");
+                    Cenario.cena.moveScene(naveCliente);
+
+//                ConIni.inimigo(cena);
+//                ConIni.inimigo2(cena);
                     naveCliente.x += Cenario.cena.getXOffset();
                     naveCliente.y += Cenario.cena.getYOffset();
-                    naveCliente.mover(Servidor.janela, teclado);
-                    naveCliente.atirar(Servidor.janela, Cenario.cena, teclado, Cenario.objInimigo);
-                    naveCliente.atirar(Servidor.janela, Cenario.cena, teclado, Cenario.objInimigo2);
+                    naveCliente.mover(Cenario.janela, teclado);
+                    naveCliente.atirar(Cenario.janela, Cenario.cena, teclado, Cenario.objInimigo);
+                    naveCliente.atirar(Cenario.janela, Cenario.cena, teclado, Cenario.objInimigo2);
                     naveCliente.update(Cenario.ConIni, naveCliente);
-                    naveCliente.printPoints(Servidor.janela);
+                    naveCliente.printPoints(Cenario.janela);
                     naveCliente.draw();
-                    naveCliente.updateCollisionNaveAsteroid1();
-                    naveCliente.updateCollisionNaveAsteroid2();
-                    Cenario.cena.draw();
-                    Servidor.janela.update();
+                    
+                    if (naveCliente.updateCollisionNaveAsteroid1()) {
+//                    LimparImgMenu();
+//                    gameOver = true;
+//                    pause = false;
+                    }
+                    if (naveCliente.updateCollisionNaveAsteroid2()) {
+//                    LimparImgMenu();
+//                    gameOver = true;
+//                    pause = false;
+                    }
+
+//                explosion.update();
+//                explosion.draw();
+                    Cenario.janela.update();
+//                janela.update();
                 }
 
                 //teste

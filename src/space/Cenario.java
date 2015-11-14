@@ -16,18 +16,18 @@ import jplay.*;
  */
 public class Cenario {
 
-    private static Window janela;
+    public static Window janela;
     public static Scene cena;
     private final NavePlayer1 nave1;
-   // private final Nave nave;
+    // private final Nave nave;
     public static Inimigo objInimigo;
     public static Inimigo2 objInimigo2;
     private final Keyboard teclado;
-    public static  ControleInimigos ConIni;
+    public static ControleInimigos ConIni;
     private Explosion explosion;
 
     private GameImage imgMenu;
-    private boolean sair, pause;
+    private boolean sair, pause, gameOver;
     private int menu, cont;
 
     public Cenario(Window janela) {
@@ -35,7 +35,7 @@ public class Cenario {
         Cenario.janela = janela;
         cena = new Scene();
         nave1 = new NavePlayer1(100, 280, cena, "naveAzul.png");
-       // nave = new Nave(100, 280, cena, "naveAzul.png");
+        // nave = new Nave(100, 280, cena, "naveAzul.png");
         cena.loadFromFile(URL.scenario("cenario.scn"));
         objInimigo = new Inimigo("asteroide1.png");
         objInimigo2 = new Inimigo2("asteroide2.png");
@@ -52,6 +52,7 @@ public class Cenario {
     public void run() {
         sair = true;
         pause = true;
+        gameOver = false;
         menu = 0;
         while (sair) {
             while (pause) {
@@ -68,8 +69,17 @@ public class Cenario {
                 nave1.update(ConIni, nave1);
                 nave1.printPoints(janela);
                 nave1.draw();
-                nave1.updateCollisionNaveAsteroid1();
-                nave1.updateCollisionNaveAsteroid2();
+                if (nave1.updateCollisionNaveAsteroid1()) {
+                    LimparImgMenu();
+                    gameOver = true;
+                    pause = false;
+                }
+                if(nave1.updateCollisionNaveAsteroid2()){
+                    LimparImgMenu();
+                    gameOver = true;
+                    pause = false;
+                }
+                
 
                 explosion.update();
                 explosion.draw();
@@ -79,7 +89,7 @@ public class Cenario {
                 if (teclado.keyDown(KeyEvent.VK_ESCAPE)) {
                     imgMenu = new GameImage(URL.sprite("telaFundo.png"));
                     imgMenu.draw();
-                    janela.update();
+//                    janela.update();
                     menu = 0;
                     pause = false;
                 }
@@ -87,10 +97,20 @@ public class Cenario {
 
             switch (menu) {
                 case 0:
-                    imgMenu = new GameImage(URL.sprite("pauseSim.png"));
+                    LimparImgMenu();
+                    if (gameOver) {
+                        imgMenu = new GameImage(URL.sprite("GameOverAgain.png"));
+                    } else {
+                        imgMenu = new GameImage(URL.sprite("pauseSim.png"));
+                    }
                     break;
                 case 1:
-                    imgMenu = new GameImage(URL.sprite("pauseNao.png"));
+                    LimparImgMenu();
+                    if (gameOver) {
+                        imgMenu = new GameImage(URL.sprite("GameOverSair.png"));
+                    } else {
+                        imgMenu = new GameImage(URL.sprite("pauseNao.png"));
+                    }
                     break;
             }
 
@@ -103,7 +123,13 @@ public class Cenario {
             if (teclado.keyDown(KeyEvent.VK_ENTER)) {
                 switch (menu) {
                     case 0:
-                        pause = true;
+                        if (gameOver) {
+                            ConIni.deleteAsteroide(); //Deletar asteroids
+                            nave1.restart(); //Resetar os pontos
+                            new Cenario(janela); //Recomecar o jogo
+                        } else {
+                            pause = true; 
+                        }
                         break;
                     case 1:
                         Som.stop();
@@ -122,7 +148,7 @@ public class Cenario {
 
     }
 
-    private void ContagemRegressiva(){
+    private void ContagemRegressiva() {
         while (cont > 0) { // Contagem regressiva para o inicio do game
             try {
                 switch (cont) {
@@ -152,11 +178,15 @@ public class Cenario {
             cont--;
         }
     }
-    
+
     private void LimparImgMenu() {
         cena.moveScene(nave1);
         nave1.draw();
-        imgMenu = new GameImage(URL.sprite("telaFundo.png"));
+        if (gameOver) {
+            imgMenu = new GameImage(URL.sprite("telaFundoGameOver.png"));
+        } else {
+            imgMenu = new GameImage(URL.sprite("telaFundo.png"));
+        }
         imgMenu.draw();
     }
 
