@@ -27,7 +27,11 @@ public class NavePlayer1 extends Nave {
     public void atirar(Window janela, Scene cena, Keyboard teclado, Inimigos inimigo) {//Método que adiciona o tiro
         super.atirar(janela, cena, teclado, inimigo);
     }
-
+    @Override
+    public void restart(){
+        super.restart();
+    }
+    
     public void update(ControleInimigos inimigo, NavePlayer1 nave1) {//Chamada do método que verifica se o tiro colidiu com a nave
         tiros.updateCollsionShort(ControleInimigos.inimigos, nave1);
         tiros.updateCollsionShortsIni2(ControleInimigos.inimigos2, nave1);
