@@ -51,6 +51,11 @@ public class Nave extends Sprite {
             }
         }
     }
+    
+    public void restart(){
+        this.live = 3;
+        this.points = 0;
+    }
 
     public void updateCollisionNaveAsteroid2() {//Método que verifica a colisão da nave com o asteroide 
         ListIterator<Inimigos> astit = ControleInimigos.inimigos2.listIterator();

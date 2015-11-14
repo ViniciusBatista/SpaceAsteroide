@@ -109,6 +109,7 @@ public class Cenario {
                         Som.stop();
                         sair = false;
                         ConIni.deleteAsteroide();
+                        nave1.restart();
                         break;
 
                 }
