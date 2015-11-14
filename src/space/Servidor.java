@@ -21,21 +21,21 @@ public class Servidor {
     ServerSocket socketServidor;
 
     public Servidor(Window janela) {
-       Servidor.janela = janela;
+        Servidor.janela = janela;
 //       this.teclado = teclado;
         try {
             socketServidor = new ServerSocket(8888);
 //            while (loop) {  
-                System.out.println("Aguardando conexao....");
-                Socket socketCliente = socketServidor.accept();
+            System.out.println("Aguardando conexao....");
+            Socket socketCliente = socketServidor.accept(); //Fica aguardando conexao com o cliente
 ////                System.out.println("IP: " + socketCliente.getInetAddress().getHostAddress() + ":" + socketCliente.getPort());
 ////                System.out.println("HostName: " + socketCliente.getInetAddress().getHostName());
 ////                System.out.println("HostName: " + socketCliente.getInetAddress().getCanonicalHostName());
 ////                System.out.print("\n");
-                System.out.println("Cliente conectou-se.");
+            System.out.println("Cliente conectou-se.");
 //                
-                cenario = new Cenario(janela);
-                iniciar = new Run(janela);
+            cenario = new Cenario(janela); //Inicia o jogo
+            iniciar = new Run(janela); //Volta ao menu
 ////                iniciar = new Run();
 ////                iniciar.run();
 //                while (loopSever) {

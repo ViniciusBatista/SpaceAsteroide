@@ -21,7 +21,7 @@ public class ControleTiro {
     Scene cena;
     Explosion explosion = new Explosion();
 
-    public void adicionaTiro(double x, double y, Scene cena) {//Scene cena (paramentro removido temp)
+    public void adicionaTiro(double x, double y, Scene cena) {
         Tiro tiro = new Tiro(x, y);
         this.cena = cena;
         tiros.addFirst(tiro);
