@@ -19,6 +19,7 @@ public class Cenario {
     private static Window janela;
     public static Scene cena;
     private final NavePlayer1 nave1;
+   // private final Nave nave;
     public static Inimigo objInimigo;
     public static Inimigo2 objInimigo2;
     private final Keyboard teclado;
@@ -33,7 +34,8 @@ public class Cenario {
         cont = 4;
         Cenario.janela = janela;
         cena = new Scene();
-        nave1 = new NavePlayer1(100, 280, cena);
+        nave1 = new NavePlayer1(100, 280, cena, "naveAzul.png");
+       // nave = new Nave(100, 280, cena, "naveAzul.png");
         cena.loadFromFile(URL.scenario("cenario.scn"));
         objInimigo = new Inimigo("asteroide1.png");
         objInimigo2 = new Inimigo2("asteroide2.png");

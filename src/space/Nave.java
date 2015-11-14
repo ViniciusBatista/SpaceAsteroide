@@ -72,6 +72,7 @@ public class Nave extends Sprite {
     public void atirar(Window janela, Scene cena, Keyboard teclado, Inimigos inimigo) {//Método que adiciona o tiro
         if (teclado.keyDown(Keyboard.SPACE_KEY)) { //Pergunta se a tecla space esta precionada se sim atira
             tiros.adicionaTiro(x + 110, y + 35, cena);
+            
         }
 
     }
