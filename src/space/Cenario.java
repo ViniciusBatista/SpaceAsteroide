@@ -22,6 +22,7 @@ public class Cenario {
     // private final Nave nave;
     public static Inimigo objInimigo;
     public static Inimigo2 objInimigo2;
+    public static InimigoBoss objInimigoBoss;
     private final Keyboard teclado;
     public static ControleInimigos ConIni;
     private Explosion explosion;
@@ -39,6 +40,7 @@ public class Cenario {
         cena.loadFromFile(URL.scenario("cenario.scn"));
         objInimigo = new Inimigo("asteroide1.png");
         objInimigo2 = new Inimigo2("asteroide2.png");
+       objInimigoBoss = new InimigoBoss("boss.png");
         teclado = janela.getKeyboard();
         explosion = new Explosion();
         ConIni = new ControleInimigos();
@@ -60,12 +62,14 @@ public class Cenario {
 
                 ConIni.inimigo(cena);
                 ConIni.inimigo2(cena);
-
+                ConIni.inimigoBoss(cena);
+                
                 nave1.x += cena.getXOffset();
                 nave1.y += cena.getYOffset();
                 nave1.mover(janela, teclado);
                 nave1.atirar(janela, cena, teclado, objInimigo);
                 nave1.atirar(janela, cena, teclado, objInimigo2);
+                nave1.atirar(janela, cena, teclado, objInimigoBoss);
                 nave1.update(ConIni, nave1);
                 nave1.printPoints(janela);
                 nave1.draw();
