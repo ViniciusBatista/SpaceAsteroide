@@ -1,6 +1,8 @@
 package space;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.Scanner;
 import jplay.Keyboard;
@@ -24,39 +26,41 @@ public class Cliente {
 //            System.out.println("Digite o IP");
 //            String ip = scan.next();
             try {
-                Socket serve = new Socket("192.168.0.111", 8888);
+                Socket serve = new Socket("192.168.0.111", 3000);
                 System.out.println("Cliente se conectou ao servidor.");
 
 //                while (loopCliente) {
-                naveCliente = new NavePlayer2(100, 280, Cenario.cena, "naveVermelha.png");
+//                naveCliente = new NavePlayer2(100, 280, Cenario.cena, "naveVermelha.png");
                 while (true) {
-                    Cenario.cena.moveScene(naveCliente);
-
-//                ConIni.inimigo(cena);
-//                ConIni.inimigo2(cena);
-                    naveCliente.x += Cenario.cena.getXOffset();
-                    naveCliente.y += Cenario.cena.getYOffset();
-                    naveCliente.mover(Cenario.janela, teclado);
-                    naveCliente.atirar(Cenario.janela, Cenario.cena, teclado, Cenario.objInimigo);
-                    naveCliente.atirar(Cenario.janela, Cenario.cena, teclado, Cenario.objInimigo2);
-                    naveCliente.update(Cenario.ConIni, naveCliente);
-                    naveCliente.printPoints(Cenario.janela);
-                    naveCliente.draw();
-                    
-                    if (naveCliente.updateCollisionNaveAsteroid1()) {
-//                    LimparImgMenu();
-//                    gameOver = true;
-//                    pause = false;
-                    }
-                    if (naveCliente.updateCollisionNaveAsteroid2()) {
-//                    LimparImgMenu();
-//                    gameOver = true;
-//                    pause = false;
-                    }
-
-//                explosion.update();
-//                explosion.draw();
-                    Cenario.janela.update();
+                    BufferedReader entrada = new BufferedReader(new InputStreamReader(serve.getInputStream()));
+                    resposta = entrada.readLine();
+//                    Cenario.cena.moveScene(naveCliente);
+//
+////                ConIni.inimigo(cena);
+////                ConIni.inimigo2(cena);
+//                    naveCliente.x += Cenario.cena.getXOffset();
+//                    naveCliente.y += Cenario.cena.getYOffset();
+//                    naveCliente.mover(Cenario.janela, teclado);
+//                    naveCliente.atirar(Cenario.janela, Cenario.cena, teclado, Cenario.objInimigo);
+//                    naveCliente.atirar(Cenario.janela, Cenario.cena, teclado, Cenario.objInimigo2);
+//                    naveCliente.update(Cenario.ConIni, naveCliente);
+//                    naveCliente.printPoints(Cenario.janela);
+//                    naveCliente.draw();
+//
+//                    if (naveCliente.updateCollisionNaveAsteroid1()) {
+////                    LimparImgMenu();
+////                    gameOver = true;
+////                    pause = false;
+//                    }
+//                    if (naveCliente.updateCollisionNaveAsteroid2()) {
+////                    LimparImgMenu();
+////                    gameOver = true;
+////                    pause = false;
+//                    }
+//
+////                explosion.update();
+////                explosion.draw();
+//                    Cenario.janela.update();
 //                janela.update();
                 }
 

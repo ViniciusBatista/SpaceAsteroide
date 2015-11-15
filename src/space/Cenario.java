@@ -8,7 +8,6 @@ package space;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import jplay.*;
 
 /**
@@ -17,7 +16,7 @@ import jplay.*;
  */
 public class Cenario {
 
-    public static Window janela;
+    private Window janela;
     public static Scene cena;
     private final NavePlayer1 nave1;
     // private final Nave nave;
@@ -31,9 +30,9 @@ public class Cenario {
     private boolean sair, pause, gameOver;
     private int menu, cont;
 
-    public Cenario(Window janela) {
+    public Cenario() {
         cont = 4;
-        Cenario.janela = janela;
+        this.janela = Main.janela;
         cena = new Scene();
         nave1 = new NavePlayer1(100, 280, cena, "naveAzul.png");
         // nave = new Nave(100, 280, cena, "naveAzul.png");
@@ -148,7 +147,7 @@ public class Cenario {
             ConIni.deleteAsteroide(); //Deletar asteroids
             nave1.restart(); //Resetar os pontos
             gameOver = false;
-            new Cenario(janela); //Recomecar o jogo
+            new Cenario(); //Recomecar o jogo
         }
 
     }
