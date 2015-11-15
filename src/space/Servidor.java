@@ -1,6 +1,7 @@
 package space;
 
 import java.io.IOException;
+import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Calendar;
@@ -8,9 +9,9 @@ import java.util.Scanner;
 import jplay.Keyboard;
 import jplay.Window;
 
-public class Servidor {
+public class Servidor implements Runnable{
 
-    private final Window janela;
+    private Window janela;
     Keyboard teclado;
     Cenario cenario;
     Run iniciar;
@@ -20,11 +21,11 @@ public class Servidor {
     boolean loopSever = true, loop = true;
     ServerSocket socketServidor;
 
-    public Servidor(Window janela) {
-        this.janela = janela;
+    public void servidor() {
+        this.janela = Main.janela;
 //       this.teclado = teclado;
         try {
-            socketServidor = new ServerSocket(8888);
+            socketServidor = new ServerSocket(3000);
 //            while (loop) {  
             System.out.println("Aguardando conexao....");
             Socket socketCliente = socketServidor.accept(); //Fica aguardando conexao com o cliente
@@ -34,8 +35,14 @@ public class Servidor {
 ////                System.out.print("\n");
             System.out.println("Cliente conectou-se.");
 //                
-            cenario = new Cenario(janela); //Inicia o jogo
-            iniciar = new Run(janela); //Volta ao menu
+            cenario = new Cenario(); //Inicia o jogo
+            System.out.println("Passou");
+            PrintStream ps = new PrintStream(socketCliente.getOutputStream());
+            System.out.println("Passou2");
+            ps.print(cenario);
+            System.out.println("Passou3");
+            iniciar = new Run(); //Volta ao menu
+            System.out.println("Passou4");
 ////                iniciar = new Run();
 ////                iniciar.run();
 //                while (loopSever) {
@@ -50,8 +57,6 @@ public class Servidor {
 //                        int time = calendar.get(Calendar.HOUR_OF_DAY);
 //
 //                        if (time > 6 && time < 12) {
-//                            PrintStream ps = new PrintStream(socketCliente.getOutputStream());
-//                            ps.println("Bom dia");
 //                        } else {
 //                            if (time > 12 && time < 6) {
 //                                PrintStream ps = new PrintStream(socketCliente.getOutputStream());
@@ -96,5 +101,13 @@ public class Servidor {
         }
 
     }
+
+    @Override
+    public void run() {
+        servidor();
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+//    }
 
 }

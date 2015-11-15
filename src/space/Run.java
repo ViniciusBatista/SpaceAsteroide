@@ -17,9 +17,12 @@ public class Run {
     private int menu = 1; //Variavel para identificar e mostrar cada menu
     private Servidor sever;
     private Cliente cliente;
+    private Thread s;
+    private Player player;
     
-    public Run(Window janela) { //Metodo run(); Para inicar o jogo
-        this.janela = janela;
+    public Run() { //Metodo run(); Para inicar o jogo
+        this.janela = Main.janela;
+        player = new Player();
         teclado = janela.getKeyboard();
         imgMenu = new GameImage(URL.sprite("menuPlayer.png")); //Coloca a imagem do menu inicial (Para comecar ja com o menu)
 
@@ -54,6 +57,10 @@ public class Run {
                     } else {
                         if (menu == 3) {
                             menu = 4;
+                        }else{
+                            if(menu == 4){
+                                menu = 1;
+                            }
                         }
                     }
                 }
@@ -68,6 +75,10 @@ public class Run {
                     } else {
                         if (menu == 2) {
                             menu = 1;
+                        }else{
+                            if(menu == 1){
+                                menu = 4;
+                            }
                         }
                     }
                 }
@@ -78,7 +89,7 @@ public class Run {
                     case 1: //1 Player
                         teclado.addKey(KeyEvent.VK_DOWN, KeyEvent.KEY_RELEASED); //Coloca o botao para voltar a ser KeyReleased
                         teclado.addKey(KeyEvent.VK_UP, KeyEvent.KEY_RELEASED); //Coloca o botao para voltar a ser KeyReleased
-                        cenario = new Cenario(janela); //Cria o cenario do jogo
+                        cenario = new Cenario(); //Cria o cenario do jogo
                         break;
                     case 2: //MultiPlayer
                         //progresso
@@ -88,7 +99,10 @@ public class Run {
                         String op = JOptionPane.showInputDialog(null, "Server[1] ou cliente[2]");
                         if(op.equals("1")){
                             System.out.println("Sever");
-                            sever = new Servidor(janela);
+                            s = new Thread(sever);
+                            s.start();
+//                            sever = new Servidor();
+//                            sever.servidor();
                         }else{
                             if(op.equals("2")){
                                 System.out.println("Cliente");
@@ -98,6 +112,8 @@ public class Run {
                         break;
                     case 3: //Ranking
                         //progreso
+                        imgMenu  = new GameImage(URL.sprite("cenario.png"));
+                        player.printRanking(janela);
                         System.out.println("Menu Ranking");
                         break;
                     case 4: //Sair

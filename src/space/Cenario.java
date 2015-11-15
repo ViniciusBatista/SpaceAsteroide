@@ -16,13 +16,12 @@ import jplay.*;
  */
 public class Cenario {
 
-    public static Window janela;
+    private Window janela;
     public static Scene cena;
     private final NavePlayer1 nave1;
     // private final Nave nave;
     public static Inimigo objInimigo;
     public static Inimigo2 objInimigo2;
-    public static InimigoBoss objInimigoBoss;
     private final Keyboard teclado;
     public static ControleInimigos ConIni;
     private Explosion explosion;
@@ -31,16 +30,15 @@ public class Cenario {
     private boolean sair, pause, gameOver;
     private int menu, cont;
 
-    public Cenario(Window janela) {
+    public Cenario() {
         cont = 4;
-        Cenario.janela = janela;
+        this.janela = Main.janela;
         cena = new Scene();
         nave1 = new NavePlayer1(100, 280, cena, "naveAzul.png");
         // nave = new Nave(100, 280, cena, "naveAzul.png");
         cena.loadFromFile(URL.scenario("cenario.scn"));
         objInimigo = new Inimigo("asteroide1.png");
         objInimigo2 = new Inimigo2("asteroide2.png");
-       objInimigoBoss = new InimigoBoss("boss.png");
         teclado = janela.getKeyboard();
         explosion = new Explosion();
         ConIni = new ControleInimigos();
@@ -62,28 +60,25 @@ public class Cenario {
 
                 ConIni.inimigo(cena);
                 ConIni.inimigo2(cena);
-                ConIni.inimigoBoss(cena);
-                
+
                 nave1.x += cena.getXOffset();
                 nave1.y += cena.getYOffset();
                 nave1.mover(janela, teclado);
                 nave1.atirar(janela, cena, teclado, objInimigo);
                 nave1.atirar(janela, cena, teclado, objInimigo2);
-                nave1.atirar(janela, cena, teclado, objInimigoBoss);
                 nave1.update(ConIni, nave1);
                 nave1.printPoints(janela);
                 nave1.draw();
-                if (nave1.updateCollisionNaveAsteroid1()) {
+                if (nave1.updateCollisionNaveAsteroid1() && !gameOver) {
                     LimparImgMenu();
                     gameOver = true;
                     pause = false;
                 }
-                if(nave1.updateCollisionNaveAsteroid2()){
+                if (nave1.updateCollisionNaveAsteroid2() && !gameOver) {
                     LimparImgMenu();
                     gameOver = true;
                     pause = false;
                 }
-                
 
                 explosion.update();
                 explosion.draw();
@@ -93,7 +88,6 @@ public class Cenario {
                 if (teclado.keyDown(KeyEvent.VK_ESCAPE)) {
                     imgMenu = new GameImage(URL.sprite("telaFundo.png"));
                     imgMenu.draw();
-//                    janela.update();
                     menu = 0;
                     pause = false;
                 }
@@ -128,18 +122,17 @@ public class Cenario {
                 switch (menu) {
                     case 0:
                         if (gameOver) {
-                            ConIni.deleteAsteroide(); //Deletar asteroids
-                            nave1.restart(); //Resetar os pontos
-                            new Cenario(janela); //Recomecar o jogo
+                            sair = false;
                         } else {
-                            pause = true; 
+                            pause = true;
                         }
                         break;
                     case 1:
                         Som.stop();
-                        sair = false;
                         ConIni.deleteAsteroide();
                         nave1.restart();
+                        gameOver = false;
+                        sair = false;
                         break;
 
                 }
@@ -148,6 +141,13 @@ public class Cenario {
             imgMenu.draw();
             janela.update();
 
+        }
+
+        if (gameOver) {
+            ConIni.deleteAsteroide(); //Deletar asteroids
+            nave1.restart(); //Resetar os pontos
+            gameOver = false;
+            new Cenario(); //Recomecar o jogo
         }
 
     }

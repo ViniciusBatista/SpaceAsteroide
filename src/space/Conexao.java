@@ -6,9 +6,6 @@
 package space;
 
 import java.sql.*;
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +31,7 @@ public class Conexao {
             Class.forName(Driver);
 
             con = (Connection) DriverManager.getConnection(url, user, senha);
-            System.out.println("Conexão realizada com sucesso");
+            // System.out.println("Conexão realizada com sucesso");
         } catch (ClassNotFoundException ex) {
             System.err.println(ex.getMessage());
         } catch (SQLException e) {
@@ -64,27 +61,30 @@ public class Conexao {
         return null;
     }
 
-    public static void consulta() {
+    public static List consulta() {
         List<Player> jogadores = new ArrayList();
-        String SELECT = "select * from ranking;";
+        String SELECT = "SELECT * FROM RANKING ORDER BY POINTS DESC LIMIT 10";
         try {
             conecte();
             ResultSet rs = executeQuery(SELECT);
+            Player player = new Player();
             while (rs.next()) {
-                Player player =  new Player();      
-                
-                
+                //System.out.println(rs.getString("player") + ": " + rs.getInt("points"));
                 player.setNome(rs.getString("player"));
                 player.setPoints(rs.getInt("points"));
             }
+            jogadores.add(player);
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            return jogadores;
         }
     }
 
     public static void main(String[] args) {//Testes
         conecte();
-        execute("Vinicius", 2);
+//        execute("Vinicius", 2);
+        consulta();
     }
 
 }

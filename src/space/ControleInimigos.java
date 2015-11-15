@@ -17,11 +17,9 @@ public class ControleInimigos {
 
     static LinkedList<Inimigos> inimigos = new LinkedList<>();
     static LinkedList<Inimigos> inimigos2 = new LinkedList<>();
-    static LinkedList<Inimigos> inimigoBoss = new LinkedList<>();
 
     public static Inimigo objIni;
     public static Inimigo2 objIni2;
-    public static InimigoBoss objBoss;
 
     private Scene cena;
     private int num = 0, num2 = 0;
@@ -37,13 +35,6 @@ public class ControleInimigos {
         objIni2 = new Inimigo2("asteroide2.png");
         inimigos2.addFirst(objIni2);
         cena.addOverlay(objIni2);
-        this.cena = cena;
-    }
-
-    public void adicionaInimigoBoss(Scene cena) {
-        objBoss = new InimigoBoss("boss.png");
-        inimigoBoss.addFirst(objBoss);
-        cena.addOverlay(objBoss);
         this.cena = cena;
     }
 
@@ -81,12 +72,6 @@ public class ControleInimigos {
         run2();
     }
 
-    public void inimigoBoss(Scene cena) {//Sorteia a frequencia em que os asteroides serão adicionados
-        if (Nave.points == 3000) {
-            adicionaInimigoBoss(cena);
-        }
-        runBoss();
-    }
 
     public void run() {
         for (int i = 0; i < inimigos.size(); i++) {
@@ -115,10 +100,6 @@ public class ControleInimigos {
                 break;
             }
         }
-    }
-
-    public void runBoss() {
-            inimigoBoss.get(0).movendo();
     }
 
 }
