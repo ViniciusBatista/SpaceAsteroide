@@ -8,19 +8,30 @@ import jplay.URL;
 import jplay.Window;
 
 public class Run {
+
     //Inicializando as variaveis
+
     private Window janela;
     private Keyboard teclado;
     private Cenario cenario;
+<<<<<<< HEAD
     private GameImage imgMenu; 
     private GameImage ranking;
+=======
+    private GameImage imgMenu;
+>>>>>>> 194a371d34e67427c8aa1ac9024764fcf20aa044
     private boolean sair = true; //Variavel para finalizar o jogo
     private int menu = 1; //Variavel para identificar e mostrar cada menu
     private Servidor sever;
     private Cliente cliente;
     private Thread s;
+<<<<<<< HEAD
     private Player player;
     
+=======
+    private Ranking ranking;
+
+>>>>>>> 194a371d34e67427c8aa1ac9024764fcf20aa044
     public Run() { //Metodo run(); Para inicar o jogo
         this.janela = Main.janela;
         player = new Player();
@@ -59,8 +70,8 @@ public class Run {
                     } else {
                         if (menu == 3) {
                             menu = 4;
-                        }else{
-                            if(menu == 4){
+                        } else {
+                            if (menu == 4) {
                                 menu = 1;
                             }
                         }
@@ -77,8 +88,8 @@ public class Run {
                     } else {
                         if (menu == 2) {
                             menu = 1;
-                        }else{
-                            if(menu == 1){
+                        } else {
+                            if (menu == 1) {
                                 menu = 4;
                             }
                         }
@@ -99,14 +110,14 @@ public class Run {
                         teclado.addKey(KeyEvent.VK_UP, KeyEvent.KEY_RELEASED); //Coloca o botao para voltar a ser KeyReleased
                         System.out.println("Menu Multi");
                         String op = JOptionPane.showInputDialog(null, "Server[1] ou cliente[2]");
-                        if(op.equals("1")){
+                        if (op.equals("1")) {
                             System.out.println("Sever");
                             s = new Thread(sever);
                             s.start();
 //                            sever = new Servidor();
 //                            sever.servidor();
-                        }else{
-                            if(op.equals("2")){
+                        } else {
+                            if (op.equals("2")) {
                                 System.out.println("Cliente");
                                 cliente = new Cliente(teclado);
                             }
@@ -116,6 +127,7 @@ public class Run {
                         //progreso
                         //player.printRanking(janela);
                         System.out.println("Menu Ranking");
+                        ranking = new Ranking();
                         break;
                     case 4: //Sair
                         sair = false;
