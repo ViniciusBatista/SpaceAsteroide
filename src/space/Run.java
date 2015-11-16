@@ -13,6 +13,7 @@ public class Run {
     private Keyboard teclado;
     private Cenario cenario;
     private GameImage imgMenu; 
+    private GameImage ranking;
     private boolean sair = true; //Variavel para finalizar o jogo
     private int menu = 1; //Variavel para identificar e mostrar cada menu
     private Servidor sever;
@@ -25,6 +26,7 @@ public class Run {
         player = new Player();
         teclado = janela.getKeyboard();
         imgMenu = new GameImage(URL.sprite("menuPlayer.png")); //Coloca a imagem do menu inicial (Para comecar ja com o menu)
+        
 
         while (sair) { //While para o jogo ficar sempre rodando
             Som.stop(); //Sempre q entrar no menu parar o som
@@ -112,8 +114,7 @@ public class Run {
                         break;
                     case 3: //Ranking
                         //progreso
-                        imgMenu  = new GameImage(URL.sprite("cenario.png"));
-                        player.printRanking(janela);
+                        //player.printRanking(janela);
                         System.out.println("Menu Ranking");
                         break;
                     case 4: //Sair

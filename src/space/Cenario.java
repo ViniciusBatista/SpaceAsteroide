@@ -8,6 +8,7 @@ package space;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import jplay.*;
 
 /**
@@ -146,6 +147,9 @@ public class Cenario {
         if (gameOver) {
             ConIni.deleteAsteroide(); //Deletar asteroids
             nave1.restart(); //Resetar os pontos
+            String nick = JOptionPane.showInputDialog(null, "Informe o Nick");
+            System.out.println("NICK: "  + nick);
+            Conexao.execute(nick, 300);
             gameOver = false;
             new Cenario(); //Recomecar o jogo
         }

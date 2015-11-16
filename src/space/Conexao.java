@@ -43,11 +43,13 @@ public class Conexao {
         String sql = "insert into ranking(player, points) values ('" + nome + "', " + points + ")";
         try {
             PreparedStatement stmt = con.prepareCall(sql);
-            Statement st = con.createStatement();
-            st.execute(sql);
-            st.close();
+            //Statement st = con.createStatement();
+
+            stmt.execute();
+            stmt.close();
         } catch (SQLException e) {
             e.printStackTrace();
+            System.out.println("MERDA");
         }
     }
 
@@ -80,10 +82,10 @@ public class Conexao {
             return jogadores;
         }
     }
-
+//
     public static void main(String[] args) {//Testes
         conecte();
-//        execute("Vinicius", 2);
+        execute("angela", 2);
         consulta();
     }
 
