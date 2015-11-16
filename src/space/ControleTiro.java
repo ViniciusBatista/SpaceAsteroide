@@ -39,10 +39,8 @@ public class ControleTiro {
                 if (tiro.collided(j)) {
                     it.remove();
                     Nave.points += 5;//Incrementa os pontos do jogador na partida
-//                    explosion.appendExplosion((int) j.x, (int) j.y);
-//                    explosion.draw();
-//                    explosion.update();
-                    System.out.println("Pontos: " + nave.points);
+                    explosion.appendExplosion((int) j.x, (int) j.y);
+                    System.out.println("Pontos: " + Nave.points);
                     new Sound(URL.audio("explosion.wav")).play();
                     cena.removeOverlay(j);
                     inimigos.remove(j);

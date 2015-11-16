@@ -26,7 +26,7 @@ public class Explosion {
         Sprite sprite = new Sprite(URL.sprite("explosion.png"), 74);
         sprite.x = x;
         sprite.y = y;
-        sprite.setTotalDuration(2000);
+        sprite.setTotalDuration(400);
         sprite.setSequence(0, 74);
         sprite.setLoop(false);
         explosion.add(sprite);

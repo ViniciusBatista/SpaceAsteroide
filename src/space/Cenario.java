@@ -20,11 +20,12 @@ public class Cenario {
     private Window janela;
     public static Scene cena;
     private final NavePlayer1 nave1;
-    //private final Nave nave;
+   // private final Nave nave;
     public static Inimigo objInimigo;
     public static Inimigo2 objInimigo2;
     private final Keyboard teclado;
     public static ControleInimigos ConIni;
+    public ControleTiro conTir;
     private Explosion explosion;
     private GameImage imgMenu;
     private boolean sair, pause, gameOver;
@@ -35,13 +36,14 @@ public class Cenario {
         this.janela = Main.janela;
         cena = new Scene();
         nave1 = new NavePlayer1(100, 280, cena, "naveAzul.png");
-        // nave = new Nave(100, 280, cena, "naveAzul.png");
+        //nave = new Nave(100, 280, cena, "naveAzul.png");
         cena.loadFromFile(URL.scenario("cenario.scn"));
         objInimigo = new Inimigo("asteroide1.png");
         objInimigo2 = new Inimigo2("asteroide2.png");
         teclado = janela.getKeyboard();
         explosion = new Explosion();
         ConIni = new ControleInimigos();
+        conTir = new ControleTiro();
         ContagemRegressiva();
         Som.play("song.wav");
         run();
@@ -65,6 +67,7 @@ public class Cenario {
                 nave1.atirar(janela, cena, teclado, objInimigo);
                 nave1.atirar(janela, cena, teclado, objInimigo2);
                 nave1.update(ConIni, nave1);
+                
                 nave1.printPoints(janela);
                 nave1.draw();
                 if (nave1.updateCollisionNaveAsteroid1() && !gameOver) {
@@ -77,10 +80,7 @@ public class Cenario {
                     gameOver = true;
                     pause = false;
                 }
-
-                explosion.update();
-                explosion.draw();
-
+                
                 janela.update();
 
                 if (teclado.keyDown(KeyEvent.VK_ESCAPE)) {
@@ -127,11 +127,10 @@ public class Cenario {
                         break;
                     case 1:
                         Som.stop();
+                        String nick = JOptionPane.showInputDialog(null, "Informe o Nick");
+                        Conexao.execute(nick, (int)Nave.points);
                         ConIni.deleteAsteroide();
                         nave1.restart();
-                        String nick = JOptionPane.showInputDialog(null, "Informe o Nick");
-                        System.out.println("NICK: " + nick);
-                        Conexao.execute(nick, 300);
                         gameOver = false;
                         sair = false;
                         break;
@@ -139,15 +138,15 @@ public class Cenario {
             }
 
             imgMenu.draw();
+            
             janela.update();
         }
 
         if (gameOver) {
+            String nick = JOptionPane.showInputDialog(null, "Informe o Nick");
+            Conexao.execute(nick, (int)Nave.points);
             ConIni.deleteAsteroide(); //Deletar asteroids
             nave1.restart(); //Resetar os pontos
-            String nick = JOptionPane.showInputDialog(null, "Informe o Nick");
-            //System.out.println("NICK: " + nick);
-            Conexao.execute(nick, 300);
             gameOver = false;
             new Cenario(); //Recomecar o jogo
         }

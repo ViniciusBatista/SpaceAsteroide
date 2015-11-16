@@ -29,7 +29,6 @@ public class Run {
         player = new Player();
         teclado = janela.getKeyboard();
         imgMenu = new GameImage(URL.sprite("menuPlayer.png")); //Coloca a imagem do menu inicial (Para comecar ja com o menu)
-        
 
         while (sair) { //While para o jogo ficar sempre rodando
             Som.stop(); //Sempre q entrar no menu parar o som
@@ -37,6 +36,7 @@ public class Run {
             teclado.addKey(KeyEvent.VK_UP); //Adiciono o botao da seta de cima para ele virar um KeyPress
             imgMenu.draw();
             janela.update();
+            
 
             switch (menu) { //Determinar em qual menu está e colocar a imagem referente a ele
                 case 1:
@@ -97,7 +97,7 @@ public class Run {
                         cenario = new Cenario(); //Cria o cenario do jogo
                         break;
                     case 2: //MultiPlayer
-                        //progresso
+                        //profgresso
                         teclado.addKey(KeyEvent.VK_DOWN, KeyEvent.KEY_RELEASED); //Coloca o botao para voltar a ser KeyReleased
                         teclado.addKey(KeyEvent.VK_UP, KeyEvent.KEY_RELEASED); //Coloca o botao para voltar a ser KeyReleased
                         System.out.println("Menu Multi");
