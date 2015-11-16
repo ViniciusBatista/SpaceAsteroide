@@ -20,13 +20,12 @@ public class Cenario {
     private Window janela;
     public static Scene cena;
     private final NavePlayer1 nave1;
-    // private final Nave nave;
+    //private final Nave nave;
     public static Inimigo objInimigo;
     public static Inimigo2 objInimigo2;
     private final Keyboard teclado;
     public static ControleInimigos ConIni;
     private Explosion explosion;
-
     private GameImage imgMenu;
     private boolean sair, pause, gameOver;
     private int menu, cont;
@@ -43,9 +42,7 @@ public class Cenario {
         teclado = janela.getKeyboard();
         explosion = new Explosion();
         ConIni = new ControleInimigos();
-
         ContagemRegressiva();
-
         Som.play("song.wav");
         run();
     }
@@ -132,23 +129,24 @@ public class Cenario {
                         Som.stop();
                         ConIni.deleteAsteroide();
                         nave1.restart();
+                        String nick = JOptionPane.showInputDialog(null, "Informe o Nick");
+                        System.out.println("NICK: " + nick);
+                        Conexao.execute(nick, 300);
                         gameOver = false;
                         sair = false;
                         break;
-
                 }
             }
 
             imgMenu.draw();
             janela.update();
-
         }
 
         if (gameOver) {
             ConIni.deleteAsteroide(); //Deletar asteroids
             nave1.restart(); //Resetar os pontos
             String nick = JOptionPane.showInputDialog(null, "Informe o Nick");
-            System.out.println("NICK: "  + nick);
+            //System.out.println("NICK: " + nick);
             Conexao.execute(nick, 300);
             gameOver = false;
             new Cenario(); //Recomecar o jogo

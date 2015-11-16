@@ -7,6 +7,7 @@ package space;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -63,30 +64,33 @@ public class Conexao {
         return null;
     }
 
-    public static List consulta() {
-        List<Player> jogadores = new ArrayList();
+    public static ArrayList<Player> consulta() {
+        ArrayList<Player> jogadores = new ArrayList();
         String SELECT = "SELECT * FROM RANKING ORDER BY POINTS DESC LIMIT 10";
         try {
             conecte();
             ResultSet rs = executeQuery(SELECT);
-            Player player = new Player();
             while (rs.next()) {
+                Player player = new Player();
                 //System.out.println(rs.getString("player") + ": " + rs.getInt("points"));
                 player.setNome(rs.getString("player"));
                 player.setPoints(rs.getInt("points"));
+                jogadores.add(player);
             }
-            jogadores.add(player);
         } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            return jogadores;
-        }
+            System.err.println(e.getMessage());
+        } 
+        return jogadores;
     }
 //
-    public static void main(String[] args) {//Testes
-        conecte();
-        execute("angela", 2);
-        consulta();
-    }
+//    public static void main(String[] args) {//Testes
+//       
+//        conecte();
+//         ArrayList<Player> consul = consulta();
+//        //execute("angela", 2);
+//        for (int i = 0; i<consul.size(); i++) {
+//            System.out.println(consul.get(i).getNome() + consul.get(i).getPoints());
+//        }
+//    }
 
 }

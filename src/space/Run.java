@@ -2,10 +2,7 @@ package space;
 
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
-import jplay.GameImage;
-import jplay.Keyboard;
-import jplay.URL;
-import jplay.Window;
+import jplay.*;
 
 public class Run {
 
@@ -14,24 +11,19 @@ public class Run {
     private Window janela;
     private Keyboard teclado;
     private Cenario cenario;
-<<<<<<< HEAD
+
     private GameImage imgMenu; 
-    private GameImage ranking;
-=======
-    private GameImage imgMenu;
->>>>>>> 194a371d34e67427c8aa1ac9024764fcf20aa044
+   
     private boolean sair = true; //Variavel para finalizar o jogo
     private int menu = 1; //Variavel para identificar e mostrar cada menu
     private Servidor sever;
     private Cliente cliente;
     private Thread s;
-<<<<<<< HEAD
-    private Player player;
-    
-=======
-    private Ranking ranking;
 
->>>>>>> 194a371d34e67427c8aa1ac9024764fcf20aa044
+    private Player player;
+
+   private Ranking ranking;
+
     public Run() { //Metodo run(); Para inicar o jogo
         this.janela = Main.janela;
         player = new Player();
@@ -125,9 +117,8 @@ public class Run {
                         break;
                     case 3: //Ranking
                         //progreso
-                        //player.printRanking(janela);
                         System.out.println("Menu Ranking");
-                        ranking = new Ranking();
+                        ranking = new Ranking(janela);
                         break;
                     case 4: //Sair
                         sair = false;
