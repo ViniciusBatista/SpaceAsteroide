@@ -39,6 +39,7 @@ public class Conexao {
     }
 
     public static void execute(String nome, int points) {//método que inseri os registros na tabela do banco
+        conecte();
         String sql = "insert into ranking(player, points) values ('" + nome + "', " + points + ")";
         try {
             PreparedStatement stmt = con.prepareCall(sql);
@@ -77,18 +78,20 @@ public class Conexao {
             }
         } catch (SQLException e) {
             System.err.println(e.getMessage());
-        } 
+        }
         return jogadores;
     }
 //
-//    public static void main(String[] args) {//Testes
-//       
-//        conecte();
-//         ArrayList<Player> consul = consulta();
-//        //execute("angela", 2);
-//        for (int i = 0; i<consul.size(); i++) {
-//            System.out.println(consul.get(i).getNome() + consul.get(i).getPoints());
-//        }
-//    }
 
+//    public static void main(String[] args) {//Testes
+//
+////        conecte();
+//////         ArrayList<Player> consul = consulta();
+////        execute("batista", 250);
+//////        for (int i = 0; i<consul.size(); i++) {
+//////            System.out.println(consul.get(i).getNome() + consul.get(i).getPoints());
+//////        }
+//////    }
+//
+//    }
 }

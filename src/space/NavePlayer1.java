@@ -47,4 +47,9 @@ public class NavePlayer1 extends Nave {
     public void mover(Window janela, Keyboard teclado) {
         super.mover(janela, teclado);
     }
+
+    public static double getPoints() {
+        return points;
+    }
+    
 }

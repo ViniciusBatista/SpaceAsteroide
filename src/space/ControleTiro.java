@@ -42,6 +42,7 @@ public class ControleTiro {
 //                    explosion.appendExplosion((int) j.x, (int) j.y);
 //                    explosion.draw();
 //                    explosion.update();
+                    explosion.appendExplosion((int) j.x, (int) j.y);
                     new Sound(URL.audio("explosion.wav")).play();
                     cena.removeOverlay(j);
                     inimigos.remove(j);

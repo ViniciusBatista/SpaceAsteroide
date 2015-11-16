@@ -21,7 +21,7 @@ public class Nave extends Sprite {
     public double live;//Vida quando a variavel resistencia zera ela é decrementada na classe controleInimigo
     public int resistencia;//Essa variavel decrementa 1 a cada asteroide que ele colide
     public double velocidade = 1.5;//Velocidade de movimentação da nave
-    public static double points = 0;
+    public static double points;
     boolean movendo = false;//variavel para saber se movimentando
     ControleTiro tiros = new ControleTiro();//Objeto da classe controle de tiros
     Scene cena; //Objeto do tipo scene utilizado no construtor da classe nave
@@ -119,5 +119,10 @@ public class Nave extends Sprite {
             movendo = false;
         }
     }
+
+    public static double getPoints() {
+        return points;
+    }
+    
 
 }
