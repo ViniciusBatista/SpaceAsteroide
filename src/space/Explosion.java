@@ -22,7 +22,6 @@ public class Explosion {
     }
 
     public void appendExplosion(int x, int y) {
-        System.out.println("Explosão");
         Sprite sprite = new Sprite(URL.sprite("explosion.png"), 74);
         sprite.x = x;
         sprite.y = y;

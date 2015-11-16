@@ -8,7 +8,6 @@ package space;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
-import java.util.Iterator;
 import jplay.Window;
 
 /**
@@ -39,9 +38,7 @@ public class Player {
     public void printRanking(Window janela) {//Método que printa na tela a quantidade de pontos e de vidas do jogador.
 
         if (cont < 1) {
-            System.out.println("Passou");
             ranking = Conexao.consulta();
-            System.out.println("Chegou no FOR");
             cont++;
         }
             for (int i = 0; i < ranking.size(); i++) {

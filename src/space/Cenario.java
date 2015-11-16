@@ -15,35 +15,37 @@ import jplay.*;
  *
  * @author batista
  */
-public class Cenario {
+public class Cenario{
 
     private Window janela;
-    public static Scene cena;
-    private final NavePlayer1 nave1;
+    private Scene cena;
+    private NavePlayer1 nave1;
     //private final Nave nave;
-    public static Inimigo objInimigo;
-    public static Inimigo2 objInimigo2;
-    private final Keyboard teclado;
-    public static ControleInimigos ConIni;
+    private Inimigo objInimigo;
+    private Inimigo2 objInimigo2;
+    private Keyboard teclado;
+    private ControleInimigos ConIni;
     private Explosion explosion;
     private GameImage imgMenu;
-    private boolean sair, pause, gameOver;
+    private boolean sair, pause, gameOver, Player2;
     private int menu, cont;
 
-    public Cenario() {
-        cont = 4;
+    public void Cenario() {
+        this.cont = 4;
         this.janela = Main.janela;
-        cena = new Scene();
-        nave1 = new NavePlayer1(100, 280, cena, "naveAzul.png");
-        // nave = new Nave(100, 280, cena, "naveAzul.png");
-        cena.loadFromFile(URL.scenario("cenario.scn"));
-        objInimigo = new Inimigo("asteroide1.png");
-        objInimigo2 = new Inimigo2("asteroide2.png");
-        teclado = janela.getKeyboard();
-        explosion = new Explosion();
-        ConIni = new ControleInimigos();
+        this.cena = new Scene();
+        this.nave1 = new NavePlayer1(100, 280, cena, "naveAzul.png");
+        this.cena.loadFromFile(URL.scenario("cenario.scn"));
+        this.objInimigo = new Inimigo("asteroide1.png");
+        this.objInimigo2 = new Inimigo2("asteroide2.png");
+        this.teclado = janela.getKeyboard();
+        this.explosion = new Explosion();
+        this.ConIni = new ControleInimigos();
+        
         ContagemRegressiva();
+        
         Som.play("song.wav");
+
         run();
     }
 
@@ -77,7 +79,7 @@ public class Cenario {
                     gameOver = true;
                     pause = false;
                 }
-
+                
                 explosion.update();
                 explosion.draw();
 
@@ -146,10 +148,10 @@ public class Cenario {
             ConIni.deleteAsteroide(); //Deletar asteroids
             nave1.restart(); //Resetar os pontos
             String nick = JOptionPane.showInputDialog(null, "Informe o Nick");
-            //System.out.println("NICK: " + nick);
+            System.out.println("NICK: " + nick);
             Conexao.execute(nick, 300);
             gameOver = false;
-            new Cenario(); //Recomecar o jogo
+            Cenario(); //Recomecar o jogo
         }
 
     }

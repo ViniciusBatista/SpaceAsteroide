@@ -42,7 +42,6 @@ public class ControleTiro {
 //                    explosion.appendExplosion((int) j.x, (int) j.y);
 //                    explosion.draw();
 //                    explosion.update();
-                    System.out.println("Pontos: " + nave.points);
                     new Sound(URL.audio("explosion.wav")).play();
                     cena.removeOverlay(j);
                     inimigos.remove(j);
@@ -62,7 +61,6 @@ public class ControleTiro {
             for (Inimigos j : inimigos) {
                 if (tiro.collided(j)) {
                     it.remove();
-                    System.out.println("Pontos: " + nave.points);
                     new Sound(URL.audio("explosion.wav")).play();
                     if (j.energia == 0) {
                         nave.points += 8;//Incrementa os pontos do jogador na partida

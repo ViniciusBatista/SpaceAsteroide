@@ -7,7 +7,7 @@ import jplay.Scene;
 import jplay.Window;
 import static space.Nave.points;
 
-public class NavePlayer2 extends Nave {
+public class NavePlayer2 extends Nave{
 
     public NavePlayer2(int x, int y, Scene cena, String tipoNave) {
         super(x, y, cena, tipoNave);

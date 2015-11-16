@@ -9,7 +9,7 @@ import java.util.Scanner;
 import jplay.Keyboard;
 import jplay.Window;
 
-public class Servidor implements Runnable{
+public class Servidor implements Runnable {
 
     private Window janela;
     Keyboard teclado;
@@ -20,6 +20,7 @@ public class Servidor implements Runnable{
     String mensagem;
     boolean loopSever = true, loop = true;
     ServerSocket socketServidor;
+    Thread x;
 
     public void servidor() {
         this.janela = Main.janela;
@@ -34,15 +35,15 @@ public class Servidor implements Runnable{
 ////                System.out.println("HostName: " + socketCliente.getInetAddress().getCanonicalHostName());
 ////                System.out.print("\n");
             System.out.println("Cliente conectou-se.");
-//                
-            cenario = new Cenario(); //Inicia o jogo
-            System.out.println("Passou");
-            PrintStream ps = new PrintStream(socketCliente.getOutputStream());
-            System.out.println("Passou2");
-            ps.print(cenario);
-            System.out.println("Passou3");
-            iniciar = new Run(); //Volta ao menu
-            System.out.println("Passou4");
+            cenario = new Cenario();
+            cenario.Cenario();
+            
+//            x = new Thread(cenario);
+//            x.start();
+//            cenario = new Cenario(); //Inicia o jogo
+//            cenario.run();
+            //mandar para o cliente
+//            iniciar = new Run(); //Volta ao menu
 ////                iniciar = new Run();
 ////                iniciar.run();
 //                while (loopSever) {
@@ -109,5 +110,4 @@ public class Servidor implements Runnable{
     }
 
 //    }
-
 }

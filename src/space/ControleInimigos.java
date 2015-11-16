@@ -90,9 +90,7 @@ public class ControleInimigos {
     }
 
     public void run2() {
-        System.out.println("Metodo run 2");
         for (int j = 0; j < inimigos2.size(); j++) {
-            System.out.println("Segundo for");
             inimigos2.get(j).movendo();
             if (inimigos2.get(j).x < -50) {//Verifica se o asteroide é menor do que o ponto x, se sim remove o objeto da sena e remove da lista
                 cena.removeOverlay(inimigos2.get(j));//Remove da cena

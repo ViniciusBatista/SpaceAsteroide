@@ -11,24 +11,19 @@ public class Run {
     private Window janela;
     private Keyboard teclado;
     private Cenario cenario;
-
     private GameImage imgMenu; 
+
+    private Player player;
+    private Ranking ranking;
    
     private boolean sair = true; //Variavel para finalizar o jogo
     private int menu = 1; //Variavel para identificar e mostrar cada menu
-    private Servidor sever;
-    private Cliente cliente;
-    private Thread s;
-
-    private Player player;
-
-   private Ranking ranking;
 
     public Run() { //Metodo run(); Para inicar o jogo
         this.janela = Main.janela;
-        player = new Player();
-        teclado = janela.getKeyboard();
-        imgMenu = new GameImage(URL.sprite("menuPlayer.png")); //Coloca a imagem do menu inicial (Para comecar ja com o menu)
+        this.player = new Player();
+        this.teclado = janela.getKeyboard();
+        this.imgMenu = new GameImage(URL.sprite("menuPlayer.png")); //Coloca a imagem do menu inicial (Para comecar ja com o menu)
         
 
         while (sair) { //While para o jogo ficar sempre rodando
@@ -95,30 +90,25 @@ public class Run {
                         teclado.addKey(KeyEvent.VK_DOWN, KeyEvent.KEY_RELEASED); //Coloca o botao para voltar a ser KeyReleased
                         teclado.addKey(KeyEvent.VK_UP, KeyEvent.KEY_RELEASED); //Coloca o botao para voltar a ser KeyReleased
                         cenario = new Cenario(); //Cria o cenario do jogo
+                        cenario.Cenario();
                         break;
                     case 2: //MultiPlayer
                         //progresso
-                        teclado.addKey(KeyEvent.VK_DOWN, KeyEvent.KEY_RELEASED); //Coloca o botao para voltar a ser KeyReleased
-                        teclado.addKey(KeyEvent.VK_UP, KeyEvent.KEY_RELEASED); //Coloca o botao para voltar a ser KeyReleased
-                        System.out.println("Menu Multi");
-                        String op = JOptionPane.showInputDialog(null, "Server[1] ou cliente[2]");
-                        if (op.equals("1")) {
-                            System.out.println("Sever");
-                            s = new Thread(sever);
-                            s.start();
+//                        teclado.addKey(KeyEvent.VK_DOWN, KeyEvent.KEY_RELEASED); //Coloca o botao para voltar a ser KeyReleased
+//                        teclado.addKey(KeyEvent.VK_UP, KeyEvent.KEY_RELEASED); //Coloca o botao para voltar a ser KeyReleased
+//                        String op = JOptionPane.showInputDialog(null, "Server[1] ou cliente[2]");
+//                        if (op.equals("1")) {
 //                            sever = new Servidor();
 //                            sever.servidor();
-                        } else {
-                            if (op.equals("2")) {
-                                System.out.println("Cliente");
-                                cliente = new Cliente(teclado);
-                            }
-                        }
+//                        } else {
+//                            if (op.equals("2")) {
+//                                cliente = new Cliente(teclado);
+//                            }
+//                        }
                         break;
                     case 3: //Ranking
                         //progreso
-                        System.out.println("Menu Ranking");
-                        ranking = new Ranking(janela);
+                        ranking = new Ranking();
                         break;
                     case 4: //Sair
                         sair = false;

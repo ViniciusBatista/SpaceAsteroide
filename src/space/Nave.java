@@ -40,8 +40,6 @@ public class Nave extends Sprite {
         while (astit.hasNext()) {
             GameObject asteroid = astit.next();
             if (this.collided(asteroid)) {
-                System.out.println("Colisão da nave com o asteroide");
-                System.out.println("Live" + live);
                 if (--live == 0) {//Verifica se o live da nave é maior que 3, se não game over
                     return true;
                 }
@@ -63,8 +61,6 @@ public class Nave extends Sprite {
         while (astit.hasNext()) {
             GameObject asteroid = astit.next();
             if (this.collided(asteroid)) {
-                System.out.println("Colisão da nave com o asteroide");
-                System.out.println("Live" + live);
                 if (--live == 0) {//Verifica se o live da nave é maior que 3, se não game over
                     return  true;
                 }
